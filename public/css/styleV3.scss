@@ -1,0 +1,898 @@
+$blue : #0046ad;
+$gray: #f2f2f2;
+$darkGray: #9b9b9b;
+$lightBlue:#40bdf9;
+$formPadding: 14px;
+$borderRadius: 5px;
+$mainFontSize: 16px;
+$gray: #9b9b9b;
+$lightGray: #f2f2f2;
+*{
+  font-size: 15px!important;
+  box-sizing: border-box;
+}
+@mixin screen1024px{
+  @media screen and (min-width:1024px){
+    @content
+  }
+};
+@mixin screenMax767{
+  @media screen and (max-width: 767px){
+    @content
+  }
+};
+@mixin screenMax767Min480{
+  @media screen and (max-width: 767px) and (min-width: 480px){
+    @content
+  }
+};
+@mixin screenMax959Min768{
+  @media screen and (max-width: 959px) and (min-width: 768px){
+    @content
+  }
+};
+/*
+* used for logo and form padding
+*/
+$mainUnit:10px;
+/*
+* margin bottom: donation types
+*/
+$secondaryUnit: 14px;
+/*
+* 28
+*/
+$thirdUnit: 38px;
+$fourthUnit: 60px;
+$fifthUnit: 28px;
+$sixthUnit: 83px;
+@mixin screenMax767{
+  @content;
+}
+#main{
+  padding: $mainUnit
+}
+#logo img{
+  width: 100%;
+}
+#header{
+  @include screen1024px{
+      margin-top:$sixthUnit;
+      margin-bottom:$sixthUnit/2
+  }
+
+}
+.unit{
+  flex-basis:100%;
+  @include screenMax767Min480{
+    flex-basis:100%
+  }
+  @include screenMax959Min768{
+    flex-basis: 100%;
+  }
+}
+#type-b .step-info{
+  display: block;
+  background:$blue;
+padding:0;
+color: white;
+background: #0046ad;
+flex-basis: 31%;
+}
+.payment_body{
+  transition: max-width 5s;
+max-height: 0px;
+overflow: hidden;
+margin-top: 15px;
+}
+.payment__method_button{
+  background: $blue;
+color: white;
+text-align: center;
+padding: $formPadding 0;
+border-radius: 5px;
+}
+.payment_body-visible{
+  max-height: 100vh
+}
+.payment_head {
+  display: none;
+}
+.footer-info-wrapper{
+  display: flex;
+  flex-direction: column;
+  @include screen1024px{
+    flex-direction: row
+  }
+}
+#type-b .step-info a{
+  color:white;
+
+}
+#copyright{
+  display: none
+}
+#powered a{
+  float:none;
+}
+#powered{
+  float:none;
+  width:100%
+  }
+  #powered a{
+    text-align: center
+  }
+  #powered img{
+    display: inline-block;
+    }
+#footer{
+  background: $blue;
+  color:white;
+}
+#container{
+  width: unset;
+
+}
+#form-steps{
+      display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+#header #logo h1{
+  @include screenMax767{
+    background-color: transparent!important;
+  }
+}
+#logo{
+  @include screenMax767{
+        width: 45%!important;
+  }
+  @include screen1024px{
+        width: 30% !important;
+  }
+}
+/*
+* form general
+*/
+.step-title h2{
+    font-size:200%!important;
+  background: $blue;
+}
+.step-content,#step-3 .step-content{
+  background: white;
+  padding: $thirdUnit $secondaryUnit;
+}
+#step-3 .payment{
+  padding: 0;
+}
+.donations-type-wrapper{
+  margin-bottom:$thirdUnit /2
+}
+.step-title{
+  font-size:$mainFontSize+4;
+  color: white
+}
+.bloc{
+  border:none;
+}
+.bloc-content>h3{
+  display: none;
+}
+.bloc-content{
+  padding: 0;
+}
+.donation-type{
+  display: inline-block;
+    width: calc(50% - 2px);
+    border: solid 1px $gray;
+    text-align: center;
+    padding: 14px 0;
+    color: $gray;
+}
+#regular-chooser,#once-chooser{
+      font-size: 50%;
+}
+#regular-chooser{
+  border-radius:5px 0 0 5px
+}
+#once-chooser{
+  border-radius:0 5px 5px 0
+}
+#once-chooser.active, #regular-chooser.active{
+  background: $blue;
+    color: white;
+    border: 1px solid $blue;
+}
+.bloc{
+  display:none;
+}
+.bloc-visible{
+  display:block
+}
+#or{
+  display: none
+}
+#amount-list-regular, #amount-list-once{
+  list-style: none;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom:$thirdUnit/2;
+
+}
+#step-1,#step-2,#step-3{
+  @include screen1024px{
+    flex-basis:31%;
+  }
+}
+.tax-info{
+  padding:0
+}
+.radio-inline li:after{
+  content: "";
+  flex-basis:31%
+}
+#card-type label .checkmark {
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: relative;
+    border: solid 1px gainsboro;
+}
+.line:before, .line:after{
+  content:none
+}
+#card-type label:hover input ~ .checkmark {
+}
+
+#card-type label input:checked ~ .checkmark {
+  border: solid 1px gainsboro;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+#card-type label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+#card-type label .checkmark:after {
+  top: 50%;
+left: 50%;
+        transform: translate(-50%, -50%);
+width: 70%;
+height: 70%;
+border-radius: 50%;
+background: $blue;
+}
+input[name="amount-regular"],input[name="amount-once"]{
+  position: absolute;
+    visibility: hidden;
+}
+fieldset[class*="-amount"] span{
+  border-radius: 5px 0 0 5px
+}
+ul[id^="amount-list-"] label{
+  display: block
+}
+.radio-inline li{
+  margin: 0;
+    flex-basis: 31%;
+}
+.radio-inline span{
+  font-size:125%!important;
+  border-radius: 5px;
+padding: $secondaryUnit 0px;
+border: solid 1px $gray;
+color:$gray;
+background: $lightGray;
+}
+.radio-inline span.value_of_amount-active{
+  color: white;
+    background: $blue;
+}
+#step-2 input[type="text"],#step-2 input[type="date"],#step-3 input[type="text"],#step-3 select,#step-3 input[type="submit"]{
+  border:solid 1px $blue;
+  border-radius: 5px;
+  padding:14px;
+
+  width:100%;
+}
+#step-3 input[type="submit"]{
+  background: $blue;
+  color:white
+}
+#fieldset-step2{
+  padding:0;
+}
+
+#c-addr1{
+    display: block!important;
+}
+#cardNumber{
+  margin-bottom: $mainFontSize
+}
+select[aria-describedby="nameHelp_reserved_affectation"]{
+  width:100%;
+  color:$blue;
+  padding: $secondaryUnit 0;
+  padding-left: #{$secondaryUnit - 5px};
+  border-radius:5px;
+  border-color:$blue
+}
+p[name^="reserved_privacy"] label{
+  display:flex!important;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.required{
+  flex-basis: 90%;
+}
+.checkbox__text{
+  flex-basis:80%;
+}
+label[for="reserved_privacy2"]>:nth-child(2){
+  flex-basis: 5%!important;
+}
+label[for="reserved_affectation"]{
+  color:$blue;
+  display: inline-block;
+  padding: 0;
+  padding-left: $secondaryUnit;
+  margin-bottom: $secondaryUnit;
+  font-size: $mainFontSize!important;
+}
+p[name="reserved_affectation"]{
+  color:$blue;
+  padding: 0
+}
+input[autocomplete="section-famount"]{
+  width:100%;
+  border: solid 1px $blue;
+  border-radius: 0 5px 5px 0
+}
+.free-amount{
+  margin-bottom: $fifthUnit
+}
+.free-amount p {
+  padding:0;
+}
+.free-amount p label{
+display: flex
+}
+.free-amount span{
+
+  background: $blue;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 100%;
+  background: #0046ad;
+color: white;
+display: flex;
+align-items: center;
+font-size: 100%;
+padding: 14px 12px;
+  }
+  #card-number,#card-expiry,#card-scode{
+    padding: 0;
+  }
+#card-expiry{
+  display: inline-flex;
+      float: right;
+      width: 72.75%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#card-expiry label{
+  flex-basis:48%
+}
+#card-scode{
+  width: 24.5%;
+display: inline-block;
+}
+#fieldset-step2 p{
+  padding:0
+}
+#CVV2{
+  width:100%!important
+}
+#c-email{
+  position: relative
+}
+label[for="CVV2"]{
+  display: none;
+}
+#form-error{
+  position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    left:0;
+}
+.email__envelope-icon{
+  background: $blue;
+  position: absolute;
+height: 100%;
+
+}
+.payment_mode{
+  margin-bottom: $thirdUnit/2
+}
+/*
+*{
+  font-size: 16px;
+      margin: 0;
+      padding:0;
+      box-sizing: border-box;
+}
+@mixin screen768px{
+  @media screen and (min-width: 768px){
+    @content
+  }
+};
+@mixin screen1024px{
+  @media screen and (min-width: 1024px){
+    @content
+  }
+}
+#header #logo{
+  display: inline-block;
+    width: 43%;
+    margin-top: 0!important;
+        padding: 15px 0;
+}
+#header{
+  position: relative;
+      padding: 0 15px;
+}
+#logo img{
+  height: 35px;
+}
+#lang{
+  top: 50%;
+right: 15px;
+transform: translateY(-50%);
+position: absolute;
+}
+.step-title{
+  background-color: $blue!important;
+}
+.step-content>.height_adaptor,
+.step-title>h2{
+  font-size:25px;
+  margin:0!important;
+
+}
+.step-title>h2{
+  padding: $formPadding!important
+}
+.step-content>.height_adaptor{
+  padding: 0 16px!important;
+}
+.ui-widget.ui-widget-content{
+  border:0!important;
+}
+#c-fname,#c-lname{
+  width:49%;
+  display: inline-block;
+}
+.step-content{
+  height: 281px;
+border: solid 1px gainsboro;
+border-radius: 0 0 10px 10px;
+background:white;
+}
+.ui-tabs-anchor{
+  background-color:transparent;
+  border-style: none;
+  border: 0px;
+  outline:none;
+  width:100%;
+  padding:0!important;
+}
+.ui-tabs-anchor>h3{
+  margin: 13px;
+  font-size: 65%;
+  text-align:center
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor{
+  padding:0;
+  width: 100%;
+    text-align: center;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab.ui-tabs-active{
+  background:$blue;
+  margin-bottom: 0;
+    padding-bottom: 0;
+        border-color: $lightBlue!important;
+}
+.radio-desc span{
+      font-size: 103.1%!important;
+      padding: 10px 0;
+display: inline-block;
+}
+span[id^="value_of_amount"]{
+    width: 100%;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab{
+  width:100%;
+overflow: hidden;
+border-style: solid;
+border-width: 2px;
+margin: 0;
+background:transparent;
+display: flex;
+    align-items: center;
+}
+
+li[aria-controls="once"]{
+  border-radius: 0 $borderRadius $borderRadius 0;
+}
+li[aria-controls="regular"]{
+  border-radius: $borderRadius 0 0 $borderRadius;
+}
+
+fieldset{
+  padding:0;
+  margin:0;
+  border-width:0;
+}
+p{
+  margin:0;
+}
+ul{
+      padding-inline-start: 0px;
+}
+#main{
+  position:relative;
+      max-width: 768px;
+      left:50%;
+      transform:translateX(-50%);
+          padding: 0 15px;
+}
+.payment_head{
+  background: none;
+text-align: center;
+padding: 10px 0;
+color: $blue !important;
+border: solid 2px;
+border-radius: 10px;
+}
+.payment_head.active{
+  background: $blue;
+  color:white!important
+}
+  #card-type li{
+    display: flex;
+  }
+    #card-type li label{
+      display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include screen768px{
+      flex-direction: column-reverse;
+    }
+}
+    #card-type{
+  display: flex;
+list-style: none;
+  justify-content: space-around;
+  }
+  #cardnumber,#cardmonth,#cardyear,#scode{
+
+border-radius: 10px;
+border: solid 1px gainsboro;
+padding: 13px 6px;
+background:transparent
+  }
+    #cardnumber{
+      width: 100%;
+    }
+    #cardmonth,#scode{
+      width:100%;
+    }
+    #cardyear{width: 60%;}
+.step-info-2{
+  display: none
+}
+#step-1,#step-2,#step-3{
+  border-radius: 5px;
+  overflow: hidden;
+  @include screen768px{
+    flex-basis:32%;
+    border-radius: 5px;
+  }
+}
+#step-2 label{
+  display:none
+}
+#step-1,#step-2{
+      margin-bottom: 50px;
+}
+#fieldset-step2{
+  display: flex;
+}
+#fieldset-step2 input{
+      width: calc(100% - 4px);
+      height: 50px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color:gainsboro;
+    @include screen768px{
+      margin-bottom: 15px;
+    }
+}
+#country{
+  width: 100%;
+}
+#regular, #once{
+  background: transparent!important
+}
+.amount{
+      border: none;
+      padding:none!important;
+      margin:0;
+
+}
+.ui-tabs,.ui-tabs-nav{
+      padding: 0!important
+}
+.ui-tabs .ui-tabs-panel{
+  padding: 0!important
+}
+#amount-list-regular, #amount-list-once{
+  list-style: none;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom:15px;
+    &:after {
+    content: "";
+    flex-basis: 31%;
+    }
+}
+.apple-pay-image{
+  width:100%
+}
+.title{
+  color:$blue
+}
+input[name="famount-regular"],input[name="famount-once"]{
+  border-width: 1px;
+    border-style: solid;
+width:100%;
+border-color:$blue;
+border-radius: 0 10px 10px 0;
+
+}
+input[name="famount-regular"], input[name="famount-once"],#firstname,#lastname,#address1,#email{
+  padding-left: 15px;
+  @include screen1024px{
+    padding-left: 7px
+  }
+}
+.free-amount .currency_symbol{
+  background:$blue;
+  color:white;
+  font-size: 16px;
+  padding: 15px;
+border-radius: 10px 0 0 10px;
+}
+.free-amount>p>label{
+  display: flex;
+    align-items: stretch;
+}
+input[name="amount-regular"],input[name="amount-once"]{
+  position: absolute;
+    visibility: hidden;
+}
+li[data-detail^="tabs_"]{
+  color:$darkGray;
+  background-color: $gray;
+  flex-basis: 31%;
+  text-align: center;
+  border-radius: 10px;
+      margin-bottom:10px;
+}
+li[data-detail^="tabs_"].active{
+  color:white;
+  background-color: $blue;
+}
+ul[role="tablist"]{
+  border: none;
+  background: transparent;
+      display: flex;
+width: 100%;
+
+}
+.payment_mode{
+      margin: 0 0 25px 0!important;
+}
+.donation-target-dropdown{
+  border-radius: 5px;
+  border-color:$blue;
+    color: $blue;
+    width: 100%;
+    height: 56px;
+    text-align: center;
+    padding-left: 15px;
+}
+.donation-target-wrapper{
+  margin: 25px 0
+}
+.apple-pay-wrapper, ul[role="tablist"], .payment{
+  margin: 25px 0!important;
+}
+.title{
+  display: inline-block;
+margin-bottom: 25px;
+}
+div[id^="tabs_"]{
+  display: none!important;
+}
+.free_amount_description{
+  display:none
+}
+#form-steps{
+  display: flex;
+  flex-direction: column;
+  @include screen768px{
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+.select2-selection__rendered{
+  display: none
+}
+.payment_body{
+  margin: 25px 0;
+}
+.payment_body,#card-type,#card-number{
+    margin-bottom: 15px;
+    @include screen768px{
+      margin-bottom: 8px;
+    }
+}
+
+#card-expiry label{
+      width: 34%;
+    display: inline-block;
+        width: 49%;
+
+}
+#card-expiry label:first-child{
+
+    width: 49%;
+@include screen768px{
+  width:100%
+}
+}
+#card-expiry{
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 15px;
+    @include screen768px{
+      margin-bottom: 0;
+      width: 100%;
+    }
+}
+#cardyear{
+      width: 100%;
+      @include screen768px{
+        top: 8px;
+position: relative;
+      }
+}
+#card-scode{
+  display: inline-block;
+    width: 49%;
+    @include screen768px{
+width: 49%;
+float: right;
+position: relative;
+top: 8px;
+transform: translateY(-100%);
+    }
+}
+#card-type label {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button
+#card-type label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.card-icon{
+  width: 50%;
+float: right;
+position: relative;
+@include screen768px{
+  width: 75%;
+margin-bottom: 10px;
+}
+}
+input[type="submit"]{
+  background: transparent;
+background: $blue;
+color: white;
+border: none;
+padding: 15px 30px;
+left: 50%;
+position: relative;
+transform: translateX(-50%);
+margin-top: 25px;
+border-radius: 5px;
+}
+/* Create a custom radio button
+#card-type label .checkmark {
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: relative;
+    border: solid 1px gainsboro;
+}
+
+/* On mouse-over, add a grey background color
+#card-type label:hover input ~ .checkmark {
+}
+
+/* When the radio button is checked, add a blue background
+#card-type label input:checked ~ .checkmark {
+  border: solid 1px gainsboro;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked)
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked
+#card-type label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle)
+#card-type label .checkmark:after {
+  top: 50%;
+left: 50%;
+        transform: translate(-50%, -50%);
+width: 70%;
+height: 70%;
+border-radius: 50%;
+background: $blue;
+}
+/*
+unused fields
+
+#c-city,#c-pcode,#c-country,.currency_fieldset{
+  display:none
+}
+*/
