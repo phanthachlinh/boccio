@@ -3,6 +3,10 @@ import jsxToString from 'jsx-to-string';
 import ReactDOMServer from 'react-dom/server'
 export default ()=>{
   addButtons();
+  addEventListenersToButtons();
+  newPaymentMethodRenderedObserver()
+}
+function addEventListenersToButtons(){
   [...document.querySelectorAll('.payment__method_button')].map(el=>{
     el.addEventListener('click',ev=>{
       console.log('sdfsfd')
@@ -12,7 +16,6 @@ export default ()=>{
       paymentBody.classList.add('payment_body-visible')
     })
   })
-  newPaymentMethodRenderedObserver()
 }
 function addButtons(){
   [...document.querySelectorAll('fieldset[id^="payment_mode-"]')].map(el=>{
@@ -39,7 +42,8 @@ const callback = function(mutationsList, observer) {
     for(let mutation of mutationsList) {
       console.log(mutation)
         if (mutation.type === 'childList'&&mutation.removedNodes.length!=0&&!document.querySelector('div[class="payment"] .payment__method_button')) {
-            addButtons()
+            addButtons();
+            addEventListenersToButtons();
         }
 
     }

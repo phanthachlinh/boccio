@@ -7,6 +7,9 @@ $borderRadius: 5px;
 $mainFontSize: 16px;
 $gray: #9b9b9b;
 $lightGray: #f2f2f2;
+html{
+  background: transparent
+}
 *{
   font-size: 15px!important;
   box-sizing: border-box;
@@ -325,7 +328,13 @@ select[aria-describedby="nameHelp_reserved_affectation"]{
   padding: $secondaryUnit 0;
   padding-left: #{$secondaryUnit - 5px};
   border-radius:5px;
-  border-color:$blue
+  border-color:$blue;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+#header{
+  margin-top:0px;
 }
 p[name^="reserved_privacy"] label{
   display:flex!important;
@@ -346,7 +355,7 @@ label[for="reserved_affectation"]{
   color:$blue;
   display: inline-block;
   padding: 0;
-  padding-left: $secondaryUnit;
+  padding-left: $secondaryUnit/2;
   margin-bottom: $secondaryUnit;
   font-size: $mainFontSize!important;
 }
@@ -406,7 +415,18 @@ display: inline-block;
   width:100%!important
 }
 #c-email{
-  position: relative
+  position: relative;
+  text-align: right;
+  margin-bottom: 14px;
+}
+#c-email,#c-fname,#c-lname,#fielset-address{
+  margin-bottom: 14px;
+}
+#email{
+      width: calc(100% - 50px)!important;
+      margin-left:calc(20% - 50px);
+      border-radius: 0 5px 5px 0!important;
+          border-left: transparent;
 }
 label[for="CVV2"]{
   display: none;
@@ -420,9 +440,13 @@ label[for="CVV2"]{
 }
 .email__envelope-icon{
   background: $blue;
+    padding: 3%;
+border-radius: 5px 0 0 5px;
+  background: $blue;
   position: absolute;
 height: 100%;
-
+left: 0;
+    width: 50px;
 }
 .payment_mode{
   margin-bottom: $thirdUnit/2
