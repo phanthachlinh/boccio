@@ -1,9 +1,9 @@
 import React from 'react';
-import setDonation from '../helpers/setDonation'
+import setDonation from '../helpers/setDonation';
+import renderCardTypes from './CardTypes';
 export default function(props){
   displayDefaultBloc();
   return(
-
     <>
       <DonationTypeChooser translation='MONTHLY' id="regular-chooser" />
       <DonationTypeChooser translation='ONCE' id="once-chooser" />
@@ -34,6 +34,7 @@ function setActiveDonationType(ev){
       document.querySelector('#regular').classList.remove('bloc-visible');
       setDonation('once');
   }
+  renderCardTypes();
   ev.target.classList.add('active');
   document.getElementById(ev.target.id.split('-')[0]).classList.add('bloc-visible')
 }

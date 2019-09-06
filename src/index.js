@@ -11,6 +11,11 @@ import step3GeneralEdit from './helpers/step3GeneralEdit'
 import paymentMethodExpandButton from './components/paymentMethodExpandButton';
 import footerEdit from './helpers/footerEdit'
 import addEmailIcon from './helpers/addEmailIcon'
+import removeLangText from './helpers/removeLangText'
+import editLangListFunctionality from './helpers/editLangListFunctionality'
+import renderCardTypes from './components/CardTypes'
+import renderCheckBox from './components/CheckBox';
+import editSteptitle from './helpers/editStepTitle';
 window.onload = ()=>{
 let donationTypeChooserWrapper = document.createElement('div');
 donationTypeChooserWrapper.classList.add('donations-type-wrapper');
@@ -24,6 +29,11 @@ step3GeneralEdit();
 paymentMethodExpandButton();
 footerEdit();
 addEmailIcon();
+renderCardTypes();
+renderCheckBox();
+removeLangText();
+editLangListFunctionality();
+editSteptitle();
 console.log('attached')
 ReactDOM.render(<DonationsTypeChooser />, donationTypeChooserWrapper);
 

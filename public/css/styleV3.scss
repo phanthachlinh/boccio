@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
 $blue : #0046ad;
 $gray: #f2f2f2;
 $darkGray: #9b9b9b;
@@ -13,6 +14,7 @@ html{
 *{
   font-size: 15px!important;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 @mixin screen1024px{
   @media screen and (min-width:1024px){
@@ -24,6 +26,11 @@ html{
     @content
   }
 };
+@mixin screenMin768{
+  @media screen and (min-width: 768px){
+    @content
+  }
+};
 @mixin screenMax767Min480{
   @media screen and (max-width: 767px) and (min-width: 480px){
     @content
@@ -31,6 +38,11 @@ html{
 };
 @mixin screenMax959Min768{
   @media screen and (max-width: 959px) and (min-width: 768px){
+    @content
+  }
+};
+@mixin screen970{
+  @media screen and (min-width: 970px){
     @content
   }
 };
@@ -53,15 +65,78 @@ $sixthUnit: 83px;
   @content;
 }
 #main{
-  padding: $mainUnit
+  padding: $mainUnit;
+  left: 50%;
+    max-width: 790px;
+    position: relative;
+    transform: translateX(-50%);
+    @include screenMin768{
+      padding:0;
+    }
 }
 #logo img{
   width: 100%;
 }
+#lang{
+  display: inline-block!important;
+  position: fixed;
+top: 16px;
+right: 0;
+    width: unset;
+      margin: 0 10px;
+      @include screenMax959Min768{
+            top: 30px;
+      }
+      @include screen970{
+        top:38px;
+      }
+}
+.lang__item-expanded,#lang .current{
+      margin: 4px 15px;
+}
+.current{
+  max-height: unset!important;
+}
+.lang__item-expanded{
+      max-height: 100px!important;
+}
+#lang p{
+  display: flex;
+  flex-direction: column;
+  border: solid 1px white;
+  border-radius: 5px;
+  padding:0;
+};
+  #lang p a{
+    cursor:pointer;
+        font-size: 13px!important;
+        max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    text-decoration: none;
+    color:white;
+        margin: 0 15px;
+        @include screenMax959Min768{
+          font-size: 20px !important;
+        }
+        @include screen970{
+          font-size:20px !important;
+        }
+  }
+
 #header{
+  margin-top: 0px;
+   max-width: 790px;
+position: relative;
+left: 50%;
+transform: translateX(-50%);
+overflow:visible;
+overflow-y: visible;
+    z-index: 1;
   @include screen1024px{
       margin-top:$sixthUnit;
-      margin-bottom:$sixthUnit/2
+      margin-bottom:39px;
+          margin-top: 80px!important;
   }
 
 }
@@ -82,32 +157,71 @@ color: white;
 background: #0046ad;
 flex-basis: 31%;
 }
+html{
+  height: auto;
+}
+body{
+  margin: 0
+}
 .payment_body{
-  transition: max-width 5s;
+  transition: max-height 0.5s;
 max-height: 0px;
 overflow: hidden;
 margin-top: 15px;
 }
-.payment__method_button{
-  background: $blue;
-color: white;
-text-align: center;
-padding: $formPadding 0;
-border-radius: 5px;
-}
 .payment_body-visible{
-  max-height: 100vh
+max-height: 100vh;
 }
+select[aria-describedby="nameHelp_reserved_affectation"]::after{
+    content: '';
+    position: absolute;
+    left: 42%;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #e8e8e8;
+    clear: both;
+}
+.payment__method_button{
+ background: transparent;
+  color: blue;
+  border: solid 1px blue;
+  text-align: center;
+  padding: $formPadding 0;
+  border-radius: 5px;
+}
+.payment__method_button-active{
+ background: $blue;
+  color: white;
+}
+
+
 .payment_head {
   display: none;
 }
 .footer-info-wrapper{
+  flex-wrap: wrap;
+    justify-content: space-between;
   display: flex;
-  flex-direction: column;
+    flex-direction: column;
+    max-width: 1200px;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
   @include screen1024px{
     flex-direction: row
   }
 }
+#c-lname, #c-fname{
+  margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      display: inline-block;
+          width: 49%;
+  }
 #type-b .step-info a{
   color:white;
 
@@ -131,48 +245,63 @@ border-radius: 5px;
 #footer{
   background: $blue;
   color:white;
+      top: 18px;
+
+          position: relative;
 }
 #container{
   width: unset;
-
+  overflow: visible;
 }
 #form-steps{
       display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  #logo h1, #logo a, #logo img{
+    float:none;
+    display: block;
+  }
 #header #logo h1{
+  float:none;
   @include screenMax767{
     background-color: transparent!important;
   }
 }
 #logo{
+  float:none;
   @include screenMax767{
-        width: 45%!important;
+        width: 160px!important;
+        margin-top: $mainUnit;
   }
-  @include screen1024px{
-        width: 30% !important;
+  @include screenMax959Min768{
+    width: 300px !important;
+  }
+  @include screen970{
+width: 350px !important;
   }
 }
 /*
 * form general
 */
 .step-title h2{
-    font-size:200%!important;
+    font-size:12px!important;
   background: $blue;
+  padding:13px 20px;
 }
-.step-content,#step-3 .step-content{
+.step-content, #step3 .step-content{
   background: white;
-  padding: $thirdUnit $secondaryUnit;
+  padding: 18px 14px;
 }
+
 #step-3 .payment{
   padding: 0;
 }
 .donations-type-wrapper{
-  margin-bottom:$thirdUnit /2
+  margin-bottom:21px;
 }
 .step-title{
-  font-size:$mainFontSize+4;
+  padding: 0 0;
   color: white
 }
 .bloc{
@@ -180,6 +309,10 @@ border-radius: 5px;
 }
 .bloc-content>h3{
   display: none;
+}
+.step-container{
+  border-radius: 4px;
+overflow: hidden;
 }
 .bloc-content{
   padding: 0;
@@ -189,11 +322,11 @@ border-radius: 5px;
     width: calc(50% - 2px);
     border: solid 1px $gray;
     text-align: center;
-    padding: 14px 0;
+    padding: $formPadding/2 0;
     color: $gray;
 }
 #regular-chooser,#once-chooser{
-      font-size: 50%;
+      font-size: 8px!important;
 }
 #regular-chooser{
   border-radius:5px 0 0 5px
@@ -222,7 +355,7 @@ border-radius: 5px;
     padding: 0;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom:$thirdUnit/2;
+    margin-bottom:15px;
 
 }
 #step-1,#step-2,#step-3{
@@ -290,9 +423,9 @@ ul[id^="amount-list-"] label{
     flex-basis: 31%;
 }
 .radio-inline span{
-  font-size:125%!important;
+  font-size:12px!important;
   border-radius: 5px;
-padding: $secondaryUnit 0px;
+padding: 12px 0px;
 border: solid 1px $gray;
 color:$gray;
 background: $lightGray;
@@ -330,11 +463,19 @@ select[aria-describedby="nameHelp_reserved_affectation"]{
   border-radius:5px;
   border-color:$blue;
   -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+      -moz-appearance: none;
+      appearance: none;
 }
-#header{
-  margin-top:0px;
+p[name="reserved_affectation"]:after{
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 7px 0 7px;
+  border-color: #0046ad transparent transparent transparent;
+  bottom: 19px;
+  right: 9px;
+  position: absolute;
 }
 p[name^="reserved_privacy"] label{
   display:flex!important;
@@ -352,6 +493,7 @@ label[for="reserved_privacy2"]>:nth-child(2){
   flex-basis: 5%!important;
 }
 label[for="reserved_affectation"]{
+  font-weight: 700;
   color:$blue;
   display: inline-block;
   padding: 0;
@@ -361,14 +503,18 @@ label[for="reserved_affectation"]{
 }
 p[name="reserved_affectation"]{
   color:$blue;
-  padding: 0
+  padding: 0;
+  position: relative;
 }
 input[autocomplete="section-famount"]{
   width:100%;
   border: solid 1px $blue;
-  border-radius: 0 5px 5px 0
+  border-radius: 0 5px 5px 0;
+  padding: 13px 10px;
+
 }
 .free-amount{
+  height:36px;
   margin-bottom: $fifthUnit
 }
 .free-amount p {
@@ -376,6 +522,9 @@ input[autocomplete="section-famount"]{
 }
 .free-amount p label{
 display: flex
+}
+select, input, textarea, button{
+  font-size: 10px!important;
 }
 .free-amount span{
 
@@ -404,6 +553,13 @@ padding: 14px 12px;
 #card-expiry label{
   flex-basis:48%
 }
+#card-expiry span,#card-scode label,#card-scode span.help{
+  display: none;
+}
+.payment-submit{
+  padding:0;
+  margin-top:$formPadding;
+}
 #card-scode{
   width: 24.5%;
 display: inline-block;
@@ -418,13 +574,13 @@ display: inline-block;
   position: relative;
   text-align: right;
   margin-bottom: 14px;
+      text-align: right;
 }
 #c-email,#c-fname,#c-lname,#fielset-address{
   margin-bottom: 14px;
 }
 #email{
       width: calc(100% - 50px)!important;
-      margin-left:calc(20% - 50px);
       border-radius: 0 5px 5px 0!important;
           border-left: transparent;
 }
@@ -440,399 +596,22 @@ label[for="CVV2"]{
 }
 .email__envelope-icon{
   background: $blue;
-    padding: 3%;
+    padding: 9px;
 border-radius: 5px 0 0 5px;
   background: $blue;
   position: absolute;
 height: 100%;
 left: 0;
     width: 50px;
+        border-radius: 5px 0 0 5px;
 }
 .payment_mode{
   margin-bottom: $thirdUnit/2
 }
-/*
-*{
-  font-size: 16px;
-      margin: 0;
-      padding:0;
-      box-sizing: border-box;
-}
-@mixin screen768px{
-  @media screen and (min-width: 768px){
-    @content
-  }
-};
-@mixin screen1024px{
-  @media screen and (min-width: 1024px){
-    @content
-  }
-}
-#header #logo{
-  display: inline-block;
-    width: 43%;
-    margin-top: 0!important;
-        padding: 15px 0;
-}
-#header{
-  position: relative;
-      padding: 0 15px;
-}
-#logo img{
-  height: 35px;
-}
-#lang{
-  top: 50%;
-right: 15px;
-transform: translateY(-50%);
-position: absolute;
-}
-.step-title{
-  background-color: $blue!important;
-}
-.step-content>.height_adaptor,
-.step-title>h2{
-  font-size:25px;
-  margin:0!important;
-
-}
-.step-title>h2{
-  padding: $formPadding!important
-}
-.step-content>.height_adaptor{
-  padding: 0 16px!important;
-}
-.ui-widget.ui-widget-content{
-  border:0!important;
-}
-#c-fname,#c-lname{
-  width:49%;
-  display: inline-block;
-}
-.step-content{
-  height: 281px;
-border: solid 1px gainsboro;
-border-radius: 0 0 10px 10px;
-background:white;
-}
-.ui-tabs-anchor{
-  background-color:transparent;
-  border-style: none;
-  border: 0px;
-  outline:none;
-  width:100%;
-  padding:0!important;
-}
-.ui-tabs-anchor>h3{
-  margin: 13px;
-  font-size: 65%;
-  text-align:center
-}
-.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor{
-  padding:0;
-  width: 100%;
-    text-align: center;
-}
-.ui-tabs .ui-tabs-nav li.ui-tabs-tab.ui-tabs-active{
-  background:$blue;
-  margin-bottom: 0;
-    padding-bottom: 0;
-        border-color: $lightBlue!important;
-}
-.radio-desc span{
-      font-size: 103.1%!important;
-      padding: 10px 0;
-display: inline-block;
-}
-span[id^="value_of_amount"]{
-    width: 100%;
-}
-.ui-tabs .ui-tabs-nav li.ui-tabs-tab{
-  width:100%;
-overflow: hidden;
-border-style: solid;
-border-width: 2px;
-margin: 0;
-background:transparent;
-display: flex;
-    align-items: center;
-}
-
-li[aria-controls="once"]{
-  border-radius: 0 $borderRadius $borderRadius 0;
-}
-li[aria-controls="regular"]{
-  border-radius: $borderRadius 0 0 $borderRadius;
-}
-
-fieldset{
-  padding:0;
-  margin:0;
-  border-width:0;
-}
-p{
-  margin:0;
-}
-ul{
-      padding-inline-start: 0px;
-}
-#main{
-  position:relative;
-      max-width: 768px;
-      left:50%;
-      transform:translateX(-50%);
-          padding: 0 15px;
-}
-.payment_head{
-  background: none;
-text-align: center;
-padding: 10px 0;
-color: $blue !important;
-border: solid 2px;
-border-radius: 10px;
-}
-.payment_head.active{
-  background: $blue;
-  color:white!important
-}
-  #card-type li{
-    display: flex;
-  }
-    #card-type li label{
-      display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @include screen768px{
-      flex-direction: column-reverse;
-    }
-}
-    #card-type{
-  display: flex;
-list-style: none;
-  justify-content: space-around;
-  }
-  #cardnumber,#cardmonth,#cardyear,#scode{
-
-border-radius: 10px;
-border: solid 1px gainsboro;
-padding: 13px 6px;
-background:transparent
-  }
-    #cardnumber{
-      width: 100%;
-    }
-    #cardmonth,#scode{
-      width:100%;
-    }
-    #cardyear{width: 60%;}
-.step-info-2{
-  display: none
-}
-#step-1,#step-2,#step-3{
-  border-radius: 5px;
-  overflow: hidden;
-  @include screen768px{
-    flex-basis:32%;
-    border-radius: 5px;
-  }
-}
-#step-2 label{
-  display:none
-}
-#step-1,#step-2{
-      margin-bottom: 50px;
-}
-#fieldset-step2{
-  display: flex;
-}
-#fieldset-step2 input{
-      width: calc(100% - 4px);
-      height: 50px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    border-style: solid;
-    border-color:gainsboro;
-    @include screen768px{
-      margin-bottom: 15px;
-    }
-}
-#country{
-  width: 100%;
-}
-#regular, #once{
-  background: transparent!important
-}
-.amount{
-      border: none;
-      padding:none!important;
-      margin:0;
-
-}
-.ui-tabs,.ui-tabs-nav{
-      padding: 0!important
-}
-.ui-tabs .ui-tabs-panel{
-  padding: 0!important
-}
-#amount-list-regular, #amount-list-once{
-  list-style: none;
-    display: flex;
-    width: 100%;
-    padding: 0;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom:15px;
-    &:after {
-    content: "";
-    flex-basis: 31%;
-    }
-}
-.apple-pay-image{
-  width:100%
-}
-.title{
-  color:$blue
-}
-input[name="famount-regular"],input[name="famount-once"]{
-  border-width: 1px;
-    border-style: solid;
-width:100%;
-border-color:$blue;
-border-radius: 0 10px 10px 0;
-
-}
-input[name="famount-regular"], input[name="famount-once"],#firstname,#lastname,#address1,#email{
-  padding-left: 15px;
-  @include screen1024px{
-    padding-left: 7px
-  }
-}
-.free-amount .currency_symbol{
-  background:$blue;
-  color:white;
-  font-size: 16px;
-  padding: 15px;
-border-radius: 10px 0 0 10px;
-}
-.free-amount>p>label{
-  display: flex;
-    align-items: stretch;
-}
-input[name="amount-regular"],input[name="amount-once"]{
-  position: absolute;
-    visibility: hidden;
-}
-li[data-detail^="tabs_"]{
-  color:$darkGray;
-  background-color: $gray;
-  flex-basis: 31%;
-  text-align: center;
-  border-radius: 10px;
-      margin-bottom:10px;
-}
-li[data-detail^="tabs_"].active{
-  color:white;
-  background-color: $blue;
-}
-ul[role="tablist"]{
-  border: none;
-  background: transparent;
-      display: flex;
-width: 100%;
-
-}
-.payment_mode{
-      margin: 0 0 25px 0!important;
-}
-.donation-target-dropdown{
-  border-radius: 5px;
-  border-color:$blue;
-    color: $blue;
-    width: 100%;
-    height: 56px;
-    text-align: center;
-    padding-left: 15px;
-}
-.donation-target-wrapper{
-  margin: 25px 0
-}
-.apple-pay-wrapper, ul[role="tablist"], .payment{
-  margin: 25px 0!important;
-}
-.title{
-  display: inline-block;
-margin-bottom: 25px;
-}
-div[id^="tabs_"]{
-  display: none!important;
-}
-.free_amount_description{
-  display:none
-}
-#form-steps{
-  display: flex;
-  flex-direction: column;
-  @include screen768px{
-    flex-direction: row;
-    justify-content: space-around;
-  }
-}
-.select2-selection__rendered{
-  display: none
-}
-.payment_body{
-  margin: 25px 0;
-}
-.payment_body,#card-type,#card-number{
-    margin-bottom: 15px;
-    @include screen768px{
-      margin-bottom: 8px;
-    }
-}
-
-#card-expiry label{
-      width: 34%;
-    display: inline-block;
-        width: 49%;
-
-}
-#card-expiry label:first-child{
-
-    width: 49%;
-@include screen768px{
-  width:100%
-}
-}
-#card-expiry{
-    width: 100%;
-    display: inline-block;
-    margin-bottom: 15px;
-    @include screen768px{
-      margin-bottom: 0;
-      width: 100%;
-    }
-}
-#cardyear{
-      width: 100%;
-      @include screen768px{
-        top: 8px;
-position: relative;
-      }
-}
-#card-scode{
-  display: inline-block;
-    width: 49%;
-    @include screen768px{
-width: 49%;
-float: right;
-position: relative;
-top: 8px;
-transform: translateY(-100%);
-    }
-}
-#card-type label {
+fieldset[id="payment_mode-card"] li>label {
   display: block;
   position: relative;
+  padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -842,81 +621,141 @@ transform: translateY(-100%);
   user-select: none;
 }
 
-/* Hide the browser's default radio button
-#card-type label input {
+/* Hide the browser's default radio button */
+fieldset[id="payment_mode-card"] li>label input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
 }
-.card-icon{
-  width: 50%;
-float: right;
-position: relative;
-@include screen768px{
-  width: 75%;
-margin-bottom: 10px;
+.card-types{
+  display: flex;
+justify-content: space-between;
 }
+.card-type-item{
+  flex-basis: 30%;
 }
-input[type="submit"]{
-  background: transparent;
-background: $blue;
-color: white;
-border: none;
-padding: 15px 30px;
-left: 50%;
-position: relative;
-transform: translateX(-50%);
-margin-top: 25px;
-border-radius: 5px;
+
+.payment-type-icon{
+      width: 50px;
 }
-/* Create a custom radio button
-#card-type label .checkmark {
-  top: 0;
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
   left: 0;
   height: 25px;
   width: 25px;
+  background-color: #eee;
   border-radius: 50%;
-  position: relative;
-    border: solid 1px gainsboro;
+  top: 50%;
+    transform: translateY(calc(-50% - 2px));
 }
 
-/* On mouse-over, add a grey background color
-#card-type label:hover input ~ .checkmark {
+/* On mouse-over, add a grey background color */
+fieldset[id="payment_mode-card"] li>label input ~ .checkmark {
+  background-color: white;
+border: 1px solid gainsboro;
 }
 
-/* When the radio button is checked, add a blue background
-#card-type label input:checked ~ .checkmark {
-  border: solid 1px gainsboro;
+/* When the radio button is checked, add a blue background */
+fieldset[id="payment_mode-card"] li>label input:checked ~ .checkmark {
+  background-color: white;
+  border: solid 1px $blue;
 }
 
-/* Create the indicator (the dot/circle - hidden when not checked)
+/* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the indicator (dot/circle) when checked
-#card-type label input:checked ~ .checkmark:after {
+/* Show the indicator (dot/circle) when checked */
+fieldset[id="payment_mode-card"] li>label input:checked ~ .checkmark:after {
+  width: 80%;
+display: block;
+height: 80%;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: $blue;
+}
+
+/* Style the indicator (dot/circle) */
+fieldset[id="payment_mode-card"] li>label .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+label[for^="reserved_privacy"] {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+label[for^="reserved_privacy"] input[name^="reserved_privacy"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox__checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 2px;
+}
+
+/* On mouse-over, add a grey background color */
+label[for^="reserved_privacy"]:hover input[name^="reserved_privacy"] ~ .checkbox__checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+label[for^="reserved_privacy"] input[name^="reserved_privacy"]:checked ~ .checkbox__checkmark {
+  background-color: $blue;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+label[for^="reserved_privacy"] input[name^="reserved_privacy"]:checked ~ .checkbox__checkmark:after {
   display: block;
 }
 
-/* Style the indicator (dot/circle)
-#card-type label .checkmark:after {
-  top: 50%;
-left: 50%;
-        transform: translate(-50%, -50%);
-width: 70%;
-height: 70%;
-border-radius: 50%;
-background: $blue;
+/* Style the checkmark/indicator */
+label[for^="reserved_privacy"] .checkbox__checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
-/*
-unused fields
-
-#c-city,#c-pcode,#c-country,.currency_fieldset{
-  display:none
-}
-*/

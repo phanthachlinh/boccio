@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import React from 'react';
 export default ()=>{
   document.getElementById('c-email').insertAdjacentHTML('afterbegin',ReactDOMServer.renderToStaticMarkup(
-    <div class="email__envelope-wrapper">
-      <img class="email__envelope-icon" src={envelopeSvgBase64}/>
+    <div className="email__envelope-wrapper">
+      <img className="email__envelope-icon" src={envelopeSvgBase64}/>
     </div>))
 }
