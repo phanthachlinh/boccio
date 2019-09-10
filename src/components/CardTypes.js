@@ -7,7 +7,7 @@ export default ()=>{
   cardTypes.push(getCardType('Mastercard', 'mastercard'));
   console.log('rendering');
   let renderJSX = cardTypes.map(card=>{
-    return <li data-value={card.shortname} className="card-type-item">
+    return <li data-value={card.shortname} key="card.shortname" className="card-type-item">
       <label>
         <input name="cardtype" id={card.shortname} value={card.shortname} type="radio" value={card.shortname} />
         <span className="checkmark"></span>
@@ -18,8 +18,11 @@ export default ()=>{
     </li>
   });
   [...document.querySelectorAll('#creditcard.payment_body')].map(el=>{
-    el.insertAdjacentHTML('afterbegin', ReactDOMServer.renderToStaticMarkup(<ul className="card-types">{renderJSX}</ul>))
-  })
+    el.insertAdjacentHTML('afterbegin', ReactDOMServer.renderToStaticMarkup(<ul className="card-types">{renderJSX}</ul>));
+    //reinitilizing step 3
+    Steps.init();
+  });
+
 };
 function getCardType(name,shortname){
   return {name,shortname}

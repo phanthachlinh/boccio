@@ -8,6 +8,8 @@ $borderRadius: 5px;
 $mainFontSize: 16px;
 $gray: #9b9b9b;
 $lightGray: #f2f2f2;
+$lightBlue: #5382c8;
+$activeBlue: #89ccfb;
 html{
   background: transparent
 }
@@ -61,35 +63,56 @@ $thirdUnit: 38px;
 $fourthUnit: 60px;
 $fifthUnit: 28px;
 $sixthUnit: 83px;
-@mixin screenMax767{
-  @content;
-}
+
 #main{
   padding: $mainUnit;
   left: 50%;
-    max-width: 790px;
+    max-width: 1024px;
     position: relative;
+    width: 100%;
     transform: translateX(-50%);
     @include screenMin768{
-      padding:0;
+      padding: 0 42px;
     }
 }
 #logo img{
-  width: 100%;
+  height: 50px;
+  @include screenMax767{
+    max-width: unset;
+    height:30px;
+  }
 }
+
 #lang{
   display: inline-block!important;
   position: fixed;
 top: 16px;
 right: 0;
     width: unset;
-      margin: 0 10px;
-      @include screenMax959Min768{
-            top: 30px;
-      }
-      @include screen970{
-        top:38px;
-      }
+      right: 10px;
+    @include screenMax959Min768{
+          right: 42px;
+    }
+    @include screen1024px{
+      right: 42px;
+    }
+}
+#langSelector{
+  display: inline-block;
+  margin-right: 10px;
+}
+#langSelector select{
+  background: transparent;
+    color: white;
+    border-radius: 5px;
+}
+#langSelector select option {
+  background: transparent;
+    color: black;
+    border-radius: 5px;
+}
+#langTitle{
+  color:white;
 }
 .lang__item-expanded,#lang .current{
       margin: 4px 15px;
@@ -125,18 +148,24 @@ right: 0;
   }
 
 #header{
-  margin-top: 0px;
+  margin:60px 0px!important;
    max-width: 790px;
 position: relative;
 left: 50%;
 transform: translateX(-50%);
 overflow:visible;
 overflow-y: visible;
+text-align: right;
     z-index: 1;
+    @include screenMax767{
+      margin:0!important
+    }
   @include screen1024px{
+     max-width: 1024px;
       margin-top:$sixthUnit;
       margin-bottom:39px;
           margin-top: 80px!important;
+          padding: 0 42px;
   }
 
 }
@@ -156,6 +185,7 @@ padding:0;
 color: white;
 background: #0046ad;
 flex-basis: 31%;
+height: auto!important
 }
 html{
   height: auto;
@@ -172,6 +202,9 @@ margin-top: 15px;
 .payment_body-visible{
 max-height: 100vh;
 }
+select{
+  background: white;
+}
 select[aria-describedby="nameHelp_reserved_affectation"]::after{
     content: '';
     position: absolute;
@@ -183,18 +216,29 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after{
     border-right: 20px solid transparent;
     border-top: 20px solid #e8e8e8;
     clear: both;
+    @include screenMax959Min768{
+      bottom: 31%;
+    right: 17px;
+    }
+
 }
 .payment__method_button{
  background: transparent;
-  color: blue;
-  border: solid 1px blue;
+  color: $blue;
+  border: solid 1px $blue;
   text-align: center;
   padding: $formPadding 0;
   border-radius: 5px;
+  font-weight: bold;
+  @include screen1024px{
+    font-size: 10px!important;
+    padding: 10px 0;
+  }
 }
 .payment__method_button-active{
- background: $blue;
+ background: $lightBlue;
   color: white;
+  border: solid 1px transparent
 }
 
 
@@ -206,12 +250,13 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after{
     justify-content: space-between;
   display: flex;
     flex-direction: column;
-    max-width: 1200px;
+    max-width: 1024px;
     left: 50%;
     position: relative;
     transform: translateX(-50%);
   @include screen1024px{
-    flex-direction: row
+    flex-direction: row;
+        padding: 0 42px;
   }
 }
 #c-lname, #c-fname{
@@ -220,8 +265,20 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after{
       margin-inline-start: 0px;
       margin-inline-end: 0px;
       display: inline-block;
-          width: 49%;
+      width: calc(50% - 21.5px);
+    @include screenMax767{
+      width: calc(50% - 7.5px);
+    }
+    @include screen1024px{
+      width: calc(50% - 12px);
+    }
   }
+  #c-lname{
+    float:right;
+        @include screenMax959Min768{
+            width: calc(50% - 21.5px);
+        }
+    }
 #type-b .step-info a{
   color:white;
 
@@ -242,12 +299,32 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after{
   #powered img{
     display: inline-block;
     }
+    #type-b .step-info h4, #type-c .step-info h4{
+      @include screenMax959Min768{
+        font-size: 18px!important;
+font-weight: 600;
+      }
+      @include screen1024px{
+        font-size: 18px!important;
+font-weight: 600;
+      }
+    }
+    .step-info-body span,.step-info-body strong,.step-info-body a,.step-info-body b{
+      font-size:8px!important;
+          line-height: 13px;
+    }
 #footer{
   background: $blue;
   color:white;
       top: 18px;
 
           position: relative;
+          @include screenMax959Min768{
+            padding:42px;
+          }
+          @include screen1024px{
+            padding:42px;
+          }
 }
 #container{
   width: unset;
@@ -257,22 +334,35 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after{
       display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @screen
   }
   #logo h1, #logo a, #logo img{
     float:none;
     display: block;
+    overflow:visible;
+  }
+  #logo img{
+    top: 50%;
+position: absolute;
+transform: translateY(-50%);
   }
 #header #logo h1{
   float:none;
-  @include screenMax767{
     background-color: transparent!important;
+    @include screen1024px{
+      padding:0;
+    }
+
+  @include screenMax959Min768{
+        padding: 0 42px;
   }
 }
 #logo{
   float:none;
+  display: inline-block;
+  float:left!important;
   @include screenMax767{
         width: 160px!important;
-        margin-top: $mainUnit;
   }
   @include screenMax959Min768{
     width: 300px !important;
@@ -285,13 +375,24 @@ width: 350px !important;
 * form general
 */
 .step-title h2{
-    font-size:12px!important;
+    font-size:14px!important;
   background: $blue;
   padding:13px 20px;
+  font-weight: bold;
+  @include screenMax959Min768{
+    padding:20px;
+
+  }
+  @include screen1024px{
+    font-size: 12px!important
+  }
 }
 .step-content, #step3 .step-content{
   background: white;
-  padding: 18px 14px;
+  padding: 18px 14px!important;
+  @include screenMax959Min768{
+    padding:30px!important
+  }
 }
 
 #step-3 .payment{
@@ -324,10 +425,22 @@ overflow: hidden;
     text-align: center;
     padding: $formPadding/2 0;
     color: $gray;
-}
+    @include screenMax959Min768{
+      padding: 20px 0;
+      font-weight: bold;
+    }
+    @include screen1024px{
+      padding: 9px 0
+    }
+  }
 #regular-chooser,#once-chooser{
-      font-size: 8px!important;
+      font-size: 13px!important;
+      font-weight: bold;
+      @include screen1024px{
+        font-size: 8px!important;
+      }
 }
+
 #regular-chooser{
   border-radius:5px 0 0 5px
 }
@@ -337,7 +450,13 @@ overflow: hidden;
 #once-chooser.active, #regular-chooser.active{
   background: $blue;
     color: white;
-    border: 1px solid $blue;
+    border: 2px solid $activeBlue;
+}
+input[type="date"]{
+  background:white;
+}
+label[for="reserved_birthdate"]{
+  display: none
 }
 .bloc{
   display:none;
@@ -428,18 +547,37 @@ ul[id^="amount-list-"] label{
 padding: 12px 0px;
 border: solid 1px $gray;
 color:$gray;
+font-weight: bold;
 background: $lightGray;
+@include screenMax959Min768{
+  padding: 20px 0;
+
+font-size: 14px !important;
+}
+@include screen1024px{
+  padding: 14px 0;
+}
 }
 .radio-inline span.value_of_amount-active{
   color: white;
     background: $blue;
 }
+div[id^="step-"]{
+  margin-bottom: 17px;
+}
 #step-2 input[type="text"],#step-2 input[type="date"],#step-3 input[type="text"],#step-3 select,#step-3 input[type="submit"]{
   border:solid 1px $blue;
   border-radius: 5px;
   padding:14px;
-
+  max-width: unset;
   width:100%;
+  color:gray;
+  @include screenMax959Min768{
+    padding:16px 14px;
+  }
+  @include screen1024px{
+    font-size: 10px!important;
+  }
 }
 #step-3 input[type="submit"]{
   background: $blue;
@@ -465,6 +603,19 @@ select[aria-describedby="nameHelp_reserved_affectation"]{
   -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
+      font-weight: 600;
+      @include screenMax959Min768{
+
+          padding: 23px 17px!important;
+      }
+      @include screen1024px{
+        font-size: 10px!important;
+      }
+}
+select[aria-describedby="nameHelp_reserved_affectation"] option{
+ @include screen1024px{
+        font-size: 10px!important;
+      }
 }
 p[name="reserved_affectation"]:after{
   content: "";
@@ -473,9 +624,13 @@ p[name="reserved_affectation"]:after{
   border-style: solid;
   border-width: 7px 7px 0 7px;
   border-color: #0046ad transparent transparent transparent;
-  bottom: 19px;
-  right: 9px;
+  right: 17px;
+  top: 65%;
+    right: 17px;
   position: absolute;
+  @include screenMax767{
+    top: 67%;
+  }
 }
 p[name^="reserved_privacy"] label{
   display:flex!important;
@@ -486,8 +641,11 @@ p[name^="reserved_privacy"] label{
 .required{
   flex-basis: 90%;
 }
-.checkbox__text{
-  flex-basis:80%;
+.checkbox__text, .help{
+  @include screen1024px{
+    font-size: 10px!important;
+  }
+  font-size: 10px;
 }
 label[for="reserved_privacy2"]>:nth-child(2){
   flex-basis: 5%!important;
@@ -500,6 +658,13 @@ label[for="reserved_affectation"]{
   padding-left: $secondaryUnit/2;
   margin-bottom: $secondaryUnit;
   font-size: $mainFontSize!important;
+  @include screenMax959Min768{
+    font-size: 14px!important;
+    margin-bottom: 22px;
+  };
+  @include screen1024px{
+    font-size: 10px!important;
+  }
 }
 p[name="reserved_affectation"]{
   color:$blue;
@@ -510,12 +675,21 @@ input[autocomplete="section-famount"]{
   width:100%;
   border: solid 1px $blue;
   border-radius: 0 5px 5px 0;
-  padding: 13px 10px;
+  font-weight: 600;
+  @include screenMax767{
+    padding:0 14px;
+  }
+  @include screen1024px{
+    font-size: 10px!important;
+  }
 
 }
 .free-amount{
   height:36px;
-  margin-bottom: $fifthUnit
+  margin-bottom: $fifthUnit;
+  @include screenMax959Min768{
+    height: unset;
+  }
 }
 .free-amount p {
   padding:0;
@@ -524,7 +698,12 @@ input[autocomplete="section-famount"]{
 display: flex
 }
 select, input, textarea, button{
-  font-size: 10px!important;
+  font-size: 15px!important;
+
+  @include screenMax959Min768{
+
+          padding: 20px 12px;
+  }
 }
 .free-amount span{
 
@@ -539,9 +718,18 @@ display: flex;
 align-items: center;
 font-size: 100%;
 padding: 14px 12px;
+@include screenMax959Min768{
+  padding: 20px 12px;
+}
   }
   #card-number,#card-expiry,#card-scode{
     padding: 0;
+  }
+  #card-scode .help{
+    display: none!important
+  }
+  #or{
+    display: none;
   }
 #card-expiry{
   display: inline-flex;
@@ -559,6 +747,9 @@ padding: 14px 12px;
 .payment-submit{
   padding:0;
   margin-top:$formPadding;
+  @include screenMax959Min768{
+    padding: 0 !important;
+  }
 }
 #card-scode{
   width: 24.5%;
@@ -566,6 +757,17 @@ display: inline-block;
 }
 #fieldset-step2 p{
   padding:0
+}
+#fieldset-step2 p[name^="reserved_privacy"]{
+  @include screenMax959Min768{
+    margin-bottom: 35px
+  }
+
+}
+#fieldset-step2 p[name="reserved_privacy"]{
+  @include screenMax959Min768{
+  margin-top: 44px
+}
 }
 #CVV2{
   width:100%!important
@@ -576,13 +778,29 @@ display: inline-block;
   margin-bottom: 14px;
       text-align: right;
 }
-#c-email,#c-fname,#c-lname,#fielset-address{
+#c-email,#c-fname,#c-lname,#fielset-address, #step-2 p[name^='reserved_']:not([date-type="checkbox"]){
   margin-bottom: 14px;
+  @include screenMax959Min768{
+        margin-bottom: 19px;
+  }
+  @include screen1024px{
+    margin-bottom: 16px;
+  }
+}
+#fielset-address{
+  @include screen1024px{
+    margin-bottom:26px;
+  }
 }
 #email{
-      width: calc(100% - 50px)!important;
+      width: calc(100% - 36px)!important;
       border-radius: 0 5px 5px 0!important;
-          border-left: transparent;
+          @include screenMax767{
+              width: calc(100% - 50px)!important;
+          };
+          @include screen1024px{
+              width: calc(100% - 31px)!important;
+          }
 }
 label[for="CVV2"]{
   display: none;
@@ -598,12 +816,23 @@ label[for="CVV2"]{
   background: $blue;
     padding: 9px;
 border-radius: 5px 0 0 5px;
+
   background: $blue;
   position: absolute;
 height: 100%;
 left: 0;
+border:solid 1px $blue;
     width: 50px;
         border-radius: 5px 0 0 5px;
+        @include screenMin768{
+          width:36px;
+          padding: 12px;
+        }
+        @include screen1024px{
+          padding:0 10px;
+              width: 32px;
+
+        }
 }
 .payment_mode{
   margin-bottom: $thirdUnit/2
@@ -619,6 +848,9 @@ fieldset[id="payment_mode-card"] li>label {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  @include screen1024px{
+    padding-left: 21px;
+  }
 }
 
 /* Hide the browser's default radio button */
@@ -631,7 +863,19 @@ fieldset[id="payment_mode-card"] li>label input {
 }
 .card-types{
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
+  @include screenMax959Min768{
+    width:59%;
+  };
+  @include screen1024px{
+    padding: 5px 0;
+    margin-left: 16px;
+  }
+}
+#expMonth,#expYear{
+@include screen1024px{
+      height: 41px;
+}
 }
 .card-type-item{
   flex-basis: 30%;
@@ -639,17 +883,24 @@ justify-content: space-between;
 
 .payment-type-icon{
       width: 50px;
+      @include screen1024px{
+        width:37px;
+      }
 }
 /* Create a custom radio button */
 .checkmark {
   position: absolute;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   background-color: #eee;
   border-radius: 50%;
   top: 50%;
     transform: translateY(calc(-50% - 2px));
+    @include screen1024px{
+      width:16px;
+      height:16px;
+    }
 }
 
 /* On mouse-over, add a grey background color */
@@ -673,14 +924,19 @@ fieldset[id="payment_mode-card"] li>label input:checked ~ .checkmark {
 
 /* Show the indicator (dot/circle) when checked */
 fieldset[id="payment_mode-card"] li>label input:checked ~ .checkmark:after {
-  width: 80%;
-display: block;
-height: 80%;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+  width: 12px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 12px;
+
 background: $blue;
+@include screen1024px{
+  width:10px;
+  height: 10px;
+}
 }
 
 /* Style the indicator (dot/circle) */

@@ -25,6 +25,8 @@ function displayDefaultBloc(){
 
 }
 function setActiveDonationType(ev){
+  if(ev.target.classList.contains('active'))
+    return
   if(ev.target.id=== 'regular-chooser'){
       document.querySelector('#once-chooser').classList.remove('active');
       document.querySelector('#once').classList.remove('bloc-visible');
@@ -34,7 +36,6 @@ function setActiveDonationType(ev){
       document.querySelector('#regular').classList.remove('bloc-visible');
       setDonation('once');
   }
-  renderCardTypes();
   ev.target.classList.add('active');
   document.getElementById(ev.target.id.split('-')[0]).classList.add('bloc-visible')
 }

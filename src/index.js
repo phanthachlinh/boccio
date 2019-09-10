@@ -16,25 +16,33 @@ import editLangListFunctionality from './helpers/editLangListFunctionality'
 import renderCardTypes from './components/CardTypes'
 import renderCheckBox from './components/CheckBox';
 import editSteptitle from './helpers/editStepTitle';
+import setCardPaymentMethodOpenDefault from './helpers/setCardPaymentMethodOpenDefault';
+import changeLangSelector from './helpers/changeLangSelector';
 window.onload = ()=>{
-let donationTypeChooserWrapper = document.createElement('div');
-donationTypeChooserWrapper.classList.add('donations-type-wrapper');
-document.querySelector('#step-1 .height_adaptor').prepend(donationTypeChooserWrapper);
-attachSetActivePredefValueEvListener();
-editFreeAmountSection();
-removeStep2help('email','firstname','lastname', 'address1');
-wrapStep2CheckboxText();
-editBankMonthList();
-step3GeneralEdit();
-paymentMethodExpandButton();
-footerEdit();
-addEmailIcon();
-renderCardTypes();
-renderCheckBox();
-removeLangText();
-editLangListFunctionality();
-editSteptitle();
-console.log('attached')
-ReactDOM.render(<DonationsTypeChooser />, donationTypeChooserWrapper);
+  let donationTypeChooserWrapper = document.createElement('div');
+  donationTypeChooserWrapper.classList.add('donations-type-wrapper');
+  document.querySelector('#step-1 .height_adaptor').prepend(donationTypeChooserWrapper);
+  setCardPaymentMethodOpenDefault();
+  attachSetActivePredefValueEvListener();
+  editFreeAmountSection();
+  removeStep2help('email','firstname','lastname', 'address1','reserved_birthdate');
+  wrapStep2CheckboxText();
+  editBankMonthList();
+  step3GeneralEdit();
+  paymentMethodExpandButton();
+  footerEdit();
+  addEmailIcon();
+  renderCardTypes();
+  renderCheckBox();
+ removeLangText();
+//  editLangListFunctionality();
+  editSteptitle();
+changeLangSelector();
+capitalizeDonationTargetLabel()
+  console.log('attached')
+  ReactDOM.render(<DonationsTypeChooser />, donationTypeChooserWrapper);
 
+}
+function capitalizeDonationTargetLabel(){
+  document.querySelector('label[for="reserved_affectation"]').innerText = document.querySelector('label[for="reserved_affectation"]').innerText.toUpperCase();
 }

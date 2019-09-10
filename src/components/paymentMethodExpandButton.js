@@ -7,6 +7,7 @@ export default ()=>{
   addEventListenersToButtons();
   newPaymentMethodRenderedObserver();
   editInputPlaceholder();
+  setCardPaymentAsOpen()
 }
 function addEventListenersToButtons(){
   [...document.querySelectorAll('.payment__method_button')].map(el=>{
@@ -24,13 +25,13 @@ function addEventListenersToButtons(){
 function addButtons(){
   [...document.querySelectorAll('fieldset[id^="payment_mode-"]')].map(el=>{
     el.key = el.id;
-    el.insertAdjacentHTML('afterbegin',ReactDOMServer.renderToStaticMarkup(<PaymentMethodButton title={el.id.split('-')[1]}/>))
+    el.insertAdjacentHTML('afterbegin',ReactDOMServer.renderToStaticMarkup(<PaymentMethodButton active={el.id == 'payment_mode-card'?true:false} title={el.id.split('-')[1]}/>))
     //  el.prependHTML(jsxToString(<PaymentMethodButton />))
   });
 }
 function PaymentMethodButton(props){
   return(
-    <div className="payment__method_button">
+    <div className={"payment__method_button "+(props.active?'payment__method_button-active':'')}>
       {props.title}
     </div>
   )
@@ -48,17 +49,23 @@ function changeExpYearText(){
 }
 //edits plaholders in payment method
 function editInputPlaceholder(){
-  [...document.querySelectorAll('input[name="CVV2"]')].map(el=>{
-    el.placeholder = "CVV2"
+  [...document.querySelectorAll('input[id="CVV2"]')].map(el=>{
+    el.placeholder = "CVV2";
+    el.name = "scode";
   });
-  [...document.querySelectorAll('select[name="expMonth"]')].map(el=>{
+  [...document.querySelectorAll('select[id="expMonth"]')].map(el=>{
       el.querySelector('option').innerText = "Month";
+      el.name = "cardmonth";
   });
 
-  [...document.querySelectorAll('select[name="expYear"]')].map(el=>{
+  [...document.querySelectorAll('select[id="expYear"]')].map(el=>{
     el.querySelector('option').innerText = "Year";
+    el.name = "cardyear";
   });
 
+}
+function setCardPaymentAsOpen(){
+  document.querySelector('#payment_mode-card .payment_body').classList.add('payment_body-visible');
 }
 
 function newPaymentMethodRenderedObserver(){
@@ -76,7 +83,8 @@ const callback = function(mutationsList, observer) {
             renderCardTypes();
             addEventListenersToButtons();
             editInputPlaceholder();
-            changeExpYearText()
+            changeExpYearText();
+            setCardPaymentAsOpen()
         }
 
     }

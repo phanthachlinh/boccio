@@ -10,7 +10,7 @@ export default ()=>{
   [...document.querySelectorAll('#card-scode label[for="CVV2"]')].map(el=>{
     el.remove();
   });
-  [...document.querySelectorAll('#card-scode .help')].map(el=>{
+/* [...document.querySelectorAll('#card-scode .help')].map(el=>{
     el.remove();
-  });
+  });*/
 }
