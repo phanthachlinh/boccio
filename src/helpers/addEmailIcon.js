@@ -2,6 +2,8 @@ const envelopeSvgBase64 = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiB
 import ReactDOMServer from 'react-dom/server';
 import React from 'react';
 export default ()=>{
+  if(!document.getElementById('c-email'))
+  return;
   document.getElementById('c-email').insertAdjacentHTML('afterbegin',ReactDOMServer.renderToStaticMarkup(
     <div className="email__envelope-wrapper">
       <img className="email__envelope-icon" src={envelopeSvgBase64}/>

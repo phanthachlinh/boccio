@@ -121,6 +121,7 @@ right: 0;
 }
 #langSelector{
   display: inline-block;
+  margin-right: 10px;
   position:relative;
 }
 #langSelector select{
@@ -180,15 +181,9 @@ transform: translateX(-50%);
 overflow:visible;
 overflow-y: visible;
 text-align: right;
-display: block!important;
     z-index: 1;
-
     @include screenMax767{
-        padding:0 10px;
-        margin:0!important
-    }
-    @include screenMin768{
-      padding:0 42px;
+      margin:0!important
     }
   @include screen1024px{
      max-width: 1024px;
@@ -225,6 +220,9 @@ body{
   background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    @include screen1024px{
+background-position-y:-260px
+    }
 
 }
 .payment_body{
@@ -242,7 +240,7 @@ max-height: 100vh;
 select{
   background: white;
 }
-select[aria-describedby="nameHelp_reserved_affectation"]::after,#country::after{
+select[aria-describedby="nameHelp_reserved_affectation"]::after{
     content: '';
     position: absolute;
     left: 42%;
@@ -258,9 +256,6 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after,#country::after{
     right: 17px;
     }
 
-}
-#step-2 select#country{
-  width:100%;
 }
 .payment__method_button{
  background: transparent;
@@ -404,9 +399,12 @@ font-weight: 600;
     float:none;
     display: block;
     overflow:visible;
-    padding:0;
   }
-
+  #logo img{
+    top: 50%;
+position: absolute;
+transform: translateY(-50%);
+  }
 #header #logo h1{
   float:none;
     background-color: transparent!important;
@@ -414,30 +412,22 @@ font-weight: 600;
       padding:0;
     }
 
-
-}
-#header_wrapinner{
-  text-align: right;
+  @include screenMax959Min768{
+        padding: 0 42px;
+  }
 }
 #logo{
   float:none;
   display: inline-block;
-  float:none!important;
-  position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  float:left!important;
   @include screenMax767{
         width: 160px!important;
-        margin-left:10px;
   }
   @include screenMax959Min768{
     width: 300px !important;
-    padding-left: 42px;
   }
   @include screen970{
 width: 350px !important;
-  padding-left: 42px;
   }
 }
 /*
@@ -451,8 +441,7 @@ width: 350px !important;
 color: black!important;
 border: none!important;
 text-align: center!important;
-flex-basis:100%!important;
-display:none;
+flex-basis:100%!important
 }
 .step-title h2{
     font-size:15px!important;
@@ -501,12 +490,6 @@ background: white;
 }
 div[id^="step-"]{
   position: relative;
-
-}
-form{
-  @include screenMin768{
-    padding:0 42px;
-  }
 }
 .bloc-content{
   padding: 0;
@@ -553,7 +536,6 @@ label[for="reserved_birthdate"]{
   position: absolute;
 z-index: 0;
 padding: 15px;
-z-index:1;
 }
 .error,input.error[type="checkbox"] + span.checkbox__checkmark{
   background: #FCEDED!important;
@@ -561,10 +543,6 @@ z-index:1;
 input[type="date"]:not(.has-value):before{
   color: gray;
   content: attr(placeholder);
-}
-input[type="date"].has-value{
-  z-index: 2;
-  background:white!important;
 }
 input[type="date"]:not(.has-value):before{
   background:white!important
@@ -579,18 +557,13 @@ input[type="date"]{
 input[type="date"][name="reserved_birthdate"]:not(.has-value){
   color:transparent!important
 }
-p[name="reserved_birthdate"] .required{
-  display: none;
-}
 input[type="date"]:focus{
   color:gray!important;
   background:white!important;
-  z-index: 2;
 }
 label[for="reserved_birthdate"]{
   font-size: 15px!important;
   display: inline-block!important;
-  color:gray
 }
 
 input[type="date"]:not(.has-value)::-webkit-datetime-edit-year-field:focus,
@@ -793,7 +766,7 @@ select[aria-describedby="nameHelp_reserved_affectation"],#country{
       font-weight: 600;
       @include screenMax959Min768{
 
-          padding: 16px 14px!important;
+          padding: 23px 17px!important;
       }
       @include screen1024px{
         font-size: 15px!important;
@@ -804,7 +777,7 @@ select[aria-describedby="nameHelp_reserved_affectation"] option{
         font-size: 16px!important;
       }
 }
-p[name="reserved_affectation"]:after,#c-country:after{
+p[name="reserved_affectation"]:after{
   content: "";
   width: 0;
   height: 0;
@@ -819,29 +792,6 @@ p[name="reserved_affectation"]:after,#c-country:after{
     top: 67%;
   }
 }
-#c-country{
-  position: relative
-}
-#c-country:after{
-  @include screenMax767{
-    top: 45%;
-  }
-  @include screenMin768{
-    top:44%;
-  }
-}
-p[name="reserved_affectation"]:after{
-  top: 66%;
-  @include screenMin768{
-    top:68%;
-  }
-  @include screen1024px{
-    top:66%;
-  }
-}
-#step-2 input[type="text"], #step-2 input[type="date"]{
-  width: 100%
-}
 p[name^="reserved_privacy"] label{
   display:flex!important;
     flex-wrap: wrap;
@@ -850,17 +800,6 @@ p[name^="reserved_privacy"] label{
 }
 body{
       min-height: 100vh;
-}
-#header>#lang{
-  display: none!important;
-}
-#main>p{
-  background: white;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
 }
 #container{
   min-height:100vh
@@ -1015,7 +954,6 @@ display: inline-block;
 }
 p#c-addr1, p#c-addr2, p#c-pcode, p#c-city, p#c-country{
   display: block!important;
-  width:100%;
 }
 #c-email,#c-fname,#c-lname,#fielset-address,#c-addr1, #c-addr2, #c-pcode,#c-city, #c-country, #step-2 p[name^='reserved_']:not([date-type="checkbox"]){
   margin-bottom: 14px;
@@ -1037,11 +975,8 @@ p#c-addr1, p#c-addr2, p#c-pcode, p#c-city, p#c-country{
           @include screenMax767{
               width: calc(100% - 50px)!important;
           };
-          @include screenMin768{
-              width: calc(100% - 60px)!important;
-          };
           @include screen1024px{
-              width: calc(100% - 41px)!important;
+              width: calc(100% - 31px)!important;
           }
 }
 label[for="CVV2"]{
@@ -1060,7 +995,7 @@ label[for="CVV2"]{
 }
 .email__envelope-icon{
   background: $blue;
-    padding: 12px;
+    padding: 15px;
 border-radius: 5px 0 0 5px;
 
   background: $blue;
@@ -1071,12 +1006,12 @@ border:solid 1px $blue;
     width: 50px;
         border-radius: 5px 0 0 5px;
         @include screenMin768{
-          width:60px;
+          width:36px;
           padding: 12px;
         }
         @include screen1024px{
           padding:0 10px;
-              width: 41px;
+              width: 32px;
 
         }
 }

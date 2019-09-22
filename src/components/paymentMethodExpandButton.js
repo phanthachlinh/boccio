@@ -3,6 +3,10 @@ import jsxToString from 'jsx-to-string';
 import ReactDOMServer from 'react-dom/server';
 import renderCardTypes from './CardTypes';
 export default ()=>{
+  if(!document.querySelectorAll('.payment__method_button'))
+    return;
+    if(document.getElementsByClassName('payment').length == 0)
+      return;
   addButtons();
   addEventListenersToButtons();
   newPaymentMethodRenderedObserver();
@@ -49,9 +53,11 @@ function changeExpYearText(){
 }
 //edits plaholders in payment method
 function editInputPlaceholder(){
+
   [...document.querySelectorAll('input[id="CVV2"]')].map(el=>{
     el.placeholder = "CVV2";
     el.name = "scode";
+    el.id = "scode";
   });
   [...document.querySelectorAll('select[id="expMonth"]')].map(el=>{
       el.querySelector('option').innerText = "Month";
@@ -62,6 +68,10 @@ function editInputPlaceholder(){
     el.querySelector('option').innerText = "Year";
     el.name = "cardyear";
   });
+  [...document.querySelectorAll('input[name="cardNumber"]')].map(el=>{
+    el.id = "cardnumber";
+      el.placeholder = el.parentElement.querySelector('label[for="cardNumber"]').innerText
+  });
 
 }
 function setCardPaymentAsOpen(){
@@ -69,6 +79,7 @@ function setCardPaymentAsOpen(){
 }
 
 function newPaymentMethodRenderedObserver(){
+
   const targetNode = document.getElementsByClassName('payment')[0];
 
 // Options for the observer (which mutations to observe)
@@ -77,16 +88,15 @@ function newPaymentMethodRenderedObserver(){
 // Callback function to execute when mutations are observed
 const callback = function(mutationsList, observer) {
     for(let mutation of mutationsList) {
-      console.log(mutation)
         if (mutation.type === 'childList'&&mutation.removedNodes.length!=0&&!document.querySelector('div[class="payment"] .payment__method_button')) {
             addButtons();
             renderCardTypes();
             addEventListenersToButtons();
-            editInputPlaceholder();
             changeExpYearText();
             setCardPaymentAsOpen()
-        }
-
+            editInputPlaceholder();
+        }else if (mutation.type === 'childList'&&mutation.removedNodes.length!=0)
+          editInputPlaceholder();
     }
 };
 

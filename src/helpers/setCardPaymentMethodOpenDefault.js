@@ -1,5 +1,6 @@
 export default ()=>{
-  console.log('666')
+  if(!document.getElementById('step-3'))
+    return;
   let targetNode = document.getElementById('step-3');
 const config = {childList: true, subtree: true };
   const callback = (mutationsList, observer) =>{

@@ -6,14 +6,14 @@ export default ()=>{
   let LangOptions = []
   childNodes.map(el=>{
     if(childNodes.indexOf(el) == 0){
-      console.log('first'+ el.nodeValue);
-      LangTitle = <p id='langTitle'>{el.nodeValue}</p>;
+      LangTitle = <p key={1} id='langTitle'>{el.nodeValue}</p>;
 
     }else if(el.nodeName == 'A'){
-      console.log(el.innerText);
-      LangOptions.push(<option value={el.href?el.href:''} selected={el.classList.contains('current')?'selected':''}>{el.innerText}</option>);
+      LangOptions.push(<option key={2} value={el.href?el.href:''} selected={el.classList.contains('current')?'selected':''}>{el.innerText}</option>);
     }
   })
+ if(!document.getElementById('header_wrapinner'))
+   return;
   document.getElementById('header_wrapinner').insertAdjacentHTML('beforeEnd', ReactDOMServer.renderToStaticMarkup(getNewLangSelector(LangTitle,LangOptions)));
   addLangSelectorEventListener();
  document.getElementById('lang').remove()

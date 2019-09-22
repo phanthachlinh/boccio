@@ -16,33 +16,55 @@ import editLangListFunctionality from './helpers/editLangListFunctionality'
 import renderCardTypes from './components/CardTypes'
 import renderCheckBox from './components/CheckBox';
 import editSteptitle from './helpers/editStepTitle';
+import editGestPayInputNames from './helpers/editGestPayInputNames';
+import detectMandatory from './helpers/detectMandatory';
 import setCardPaymentMethodOpenDefault from './helpers/setCardPaymentMethodOpenDefault';
+import commonCheckInputOverride from './helpers/commonCheckInputOverride';
 import changeLangSelector from './helpers/changeLangSelector';
+import addBlackUnderlays from './helpers/addBlackUnderlays';
+import addOptionalLinkToPrivacy from './helpers/addOptionalLinkToPrivacy';
+import birthdateHasValueEvListener from './helpers/birthdateHasValueEvListener';
+import addIdToDateInputs from './helpers/addIdToDateInputs';
+import setRequiredPropToInputs from './helpers/setRequiredPropToInputs';
+import addDataIraCheckValueOnInput from './helpers/addDataIraCheckValueOnInput';
+import removeSpaceFromValueOfAmount from './helpers/removeSpaceFromValueOfAmount';
 window.onload = ()=>{
-  let donationTypeChooserWrapper = document.createElement('div');
-  donationTypeChooserWrapper.classList.add('donations-type-wrapper');
-  document.querySelector('#step-1 .height_adaptor').prepend(donationTypeChooserWrapper);
+  if(document.querySelector('#step-1 .bloc'))
+    document.querySelector('#step-1 .bloc').insertAdjacentHTML('beforeBegin','<div class="donations-type-wrapper"></div>');
   setCardPaymentMethodOpenDefault();
   attachSetActivePredefValueEvListener();
   editFreeAmountSection();
+  addIdToDateInputs();
   removeStep2help('email','firstname','lastname', 'address1','reserved_birthdate');
-  wrapStep2CheckboxText();
+//  wrapStep2CheckboxText();
   editBankMonthList();
   step3GeneralEdit();
   paymentMethodExpandButton();
   footerEdit();
   addEmailIcon();
   renderCardTypes();
-  renderCheckBox();
+ renderCheckBox();
  removeLangText();
 //  editLangListFunctionality();
   editSteptitle();
 changeLangSelector();
 capitalizeDonationTargetLabel()
-  console.log('attached')
-  ReactDOM.render(<DonationsTypeChooser />, donationTypeChooserWrapper);
+addDataIraCheckValueOnInput();
+detectMandatory();
+editGestPayInputNames();
+commonCheckInputOverride();
+birthdateHasValueEvListener();
+removeSpaceFromValueOfAmount();
+addBlackUnderlays();
+addOptionalLinkToPrivacy();
+
+//setRequiredPropToInputs();
+  if(typeof document.getElementsByClassName('donations-type-wrapper')[0] !=='undefined')
+  ReactDOM.render(<DonationsTypeChooser />, document.getElementsByClassName('donations-type-wrapper')[0]);
 
 }
 function capitalizeDonationTargetLabel(){
+  if(!document.querySelector('label[for="reserved_affectation"]'))
+  return;
   document.querySelector('label[for="reserved_affectation"]').innerText = document.querySelector('label[for="reserved_affectation"]').innerText.toUpperCase();
 }
