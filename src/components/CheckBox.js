@@ -1,10 +1,11 @@
 export default ()=>{
   [...document.querySelectorAll('input[name^="reserved_privacy"][type="checkbox"]')].map(el=>{
     el.insertAdjacentHTML('afterend','<span class="checkbox__checkmark"></span>');
+    el.value=0;
   });
   editLabelId();
   addCheckBoxRequiredToText();
-  //addCheckedAttrToHidden()
+  addCheckedAttrToHidden()
 }
 function editLabelId(){
   [...document.querySelectorAll('label[for^="reserved_privacy"]')].map(el=>{
@@ -16,15 +17,17 @@ function addCheckedAttrToHidden(){
     el.addEventListener('click',ev=>{
       if(ev.currentTarget.querySelector('[data-ira-check]')===null)
         return;
-      else
-        ev.preventDefault();
+  
       let checkbox = ev.currentTarget.querySelector('[data-ira-check]');
       if(!checkbox)
         return;
       if(checkbox.getAttribute('data-ira-check')=='1'){
         checkbox.setAttribute('data-ira-check',0)
+        checkbox.setAttribute('value',0)
+
       }else{
         checkbox.setAttribute('data-ira-check',1)
+          checkbox.setAttribute('value',1)
       }
       let hiddenInput = ev.currentTarget.querySelector('input[type="checkbox"]')
       if(hiddenInput.checked)

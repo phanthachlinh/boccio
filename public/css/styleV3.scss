@@ -11,7 +11,7 @@ $lightGray: #f2f2f2;
 $lightBlue: #5382c8;
 $activeBlue: #89ccfb;
 html{
-  background: transparent
+  background: transparent;
 }
 *{
   font-size: 15px!important;
@@ -64,11 +64,11 @@ $fourthUnit: 60px;
 $fifthUnit: 28px;
 $sixthUnit: 83px;
 
-#main{
+body#type-b #main{
   padding: $mainUnit;
   left: 50%;
 
-  max-width: 1024px;
+  max-width: 1252px;
     position: relative;
     width: 100%;
     transform: translateX(-50%);
@@ -86,12 +86,13 @@ $sixthUnit: 83px;
 }
 #greetings-text{
   padding:10px!important;
-    font-size:13px!important;
+    font-size:15px!important;
 
 }
 #greetings-text *{
-  font-size:13px!important
+  font-size:15px!important
 }
+
 #greetings-text strong{
   font-size:123%!important
 }
@@ -99,11 +100,70 @@ $sixthUnit: 83px;
   color: black;
     background: white;
 }
+#greetings input[type="submit"]{
+    font-weight: normal;
+}
+#greetings.bloc{
+  display: flex!important;
+  flex-direction: column;
+  @include screen1024px{
+    flex-direction: row;
+  }
+}
+#greetings-comp fieldset{
+  @include screenMax767{
+    padding: 0 0px !important;
+  }
+}
+#greetings-comp p{
+  padding: 0px;
+}
+#greetings-comp label{
+  position:relative;
+  font-size:15px!important;
+  background: none;
+    margin: 10px 0;
+}
+#greetings-comp form{
+  padding:7px;
+  @include screen1024px{
+    padding:0 7px;
+  }
+}
+#greetings-comp input[type="text"],#greetings-comp textarea,#greetings-comp select{
+padding: 10px 10px;
+border-radius: 5px;
+border: solid 1px $lightBlue;
+}
+#greetings-comp input[type="text"],#greetings-comp textarea{
+width: 100%;
+}
+#greetings-comp select{
+-webkit-appearance: menuList;
+-moz-appearance: menuList;
+}
+#greetings-comp input[type="submit"]{
+  border-radius: 5px;
+  background:$blue;
+  color:white;
+  border: solid 1px $lightBlue;
+  padding: 10px 15px;
+}
+#greetings-comp textarea{
+  width:100%;
+  padding:0;
+}
+#greetings .help{
+  background:none
+}
 #greetings .unit{
   width:100%;
 }
 #greetings h2{
-  font-size: 167%!important
+  font-size: 167%!important;
+  background:$blue;
+  color:white;
+      margin-bottom: 10px;
 }
 #lang{
   display: inline-block!important;
@@ -122,6 +182,7 @@ right: 0;
 #langSelector{
   display: inline-block;
   position:relative;
+  float:right
 }
 #langSelector select{
   background: transparent;
@@ -173,13 +234,12 @@ right: 0;
 
 #header{
   margin:60px 0px!important;
-   max-width: 790px;
+   max-width: 1252px;
 position: relative;
 left: 50%;
 transform: translateX(-50%);
 overflow:visible;
 overflow-y: visible;
-text-align: right;
 display: block!important;
     z-index: 1;
 
@@ -191,7 +251,6 @@ display: block!important;
       padding:0 42px;
     }
   @include screen1024px{
-     max-width: 1024px;
       margin-top:$sixthUnit;
       margin-bottom:39px;
           margin-top: 80px!important;
@@ -290,7 +349,7 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after,#country::after{
     justify-content: space-between;
   display: none;
     flex-direction: column;
-    max-width: 1024px;
+    max-width: 1252px;
     left: 50%;
     position: relative;
     transform: translateX(-50%);
@@ -326,12 +385,31 @@ select[aria-describedby="nameHelp_reserved_affectation"]::after,#country::after{
   color:white;
 
 }
+body:not(#type-b) #footer{
+  text-align: center;
+  max-width: 1252px;
+  left:50%;
+  transform:translate(-50%);
+  @include screenMin768{
+  display: flex;
+}
+}
+body:not(#type-b) .footer-info-wrapper{
+padding:0;
+}
+body:not(#type-b) #copyright{
+  display: inline-block;
+  text-align:none!important;
+  @include screenMin768{
+
+}
+}
 #footer_wrapinner{
   flex-direction: column;
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    max-width: 1024px;
+    max-width: 1252px;
     left: 50%;
 position: relative;
 transform: translateX(-50%);
@@ -342,6 +420,9 @@ overflow-x: hidden;
     @include screen1024px{
       padding: 0 42px;
     }
+}
+#fieldset-step2 [data-type="checkbox"] span.reserved_title{
+  display:none;
 }
 #powered a{
   @include screenMin768{
@@ -416,28 +497,21 @@ font-weight: 600;
 
 
 }
-#header_wrapinner{
-  text-align: right;
-}
+
 #logo{
   float:none;
   display: inline-block;
   float:none!important;
-  position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  margin: 22px 0;
   @include screenMax767{
         width: 160px!important;
         margin-left:10px;
   }
   @include screenMax959Min768{
     width: 300px !important;
-    padding-left: 42px;
   }
   @include screen970{
 width: 350px !important;
-  padding-left: 42px;
   }
 }
 /*
@@ -452,7 +526,9 @@ color: black!important;
 border: none!important;
 text-align: center!important;
 flex-basis:100%!important;
-display:none;
+background: $blue!important;
+color:white!important;
+border-radius:5px!important
 }
 .step-title h2{
     font-size:15px!important;
@@ -552,8 +628,24 @@ form{
 label[for="reserved_birthdate"]{
   position: absolute;
 z-index: 0;
-padding: 15px;
+padding: 15px 15px;
 z-index:1;
+}
+#card-expiry select{
+  line-height: 1;
+}
+#regular-chooser, #once-chooser{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#greetings-text img{
+  margin-left:0!important;
+  margin-right:0!important;
+}
+.greetings-stretcher{
+  display: table;
+  width: 100%;
 }
 .error,input.error[type="checkbox"] + span.checkbox__checkmark{
   background: #FCEDED!important;
@@ -562,6 +654,7 @@ input[type="date"]:not(.has-value):before{
   color: gray;
   content: attr(placeholder);
 }
+
 input[type="date"].has-value{
   z-index: 2;
   background:white!important;
@@ -569,20 +662,20 @@ input[type="date"].has-value{
 input[type="date"]:not(.has-value):before{
   background:white!important
 }
-input[type="date"]:not(.has-value):focus:before{
-  color: gray;
-  content: '';
-}
+
 input[type="date"]{
     position: relative;
 }
 input[type="date"][name="reserved_birthdate"]:not(.has-value){
   color:transparent!important
 }
+input[type="date"][name="reserved_birthdate"]:not(.has-value):focus{
+  color:black!important
+}
 p[name="reserved_birthdate"] .required{
   display: none;
 }
-input[type="date"]:focus{
+input[type="date"][data-scope="step2"]:not(.has-value):focus{
   color:gray!important;
   background:white!important;
   z-index: 2;
@@ -590,14 +683,8 @@ input[type="date"]:focus{
 label[for="reserved_birthdate"]{
   font-size: 15px!important;
   display: inline-block!important;
-  color:gray
 }
 
-input[type="date"]:not(.has-value)::-webkit-datetime-edit-year-field:focus,
-input[type="date"]:not(.has-value)::-webkit-datetime-edit-month-field:focus,
-input[type="date"]:not(.has-value)::-webkit-datetime-edit-day-field:focus {
-    color: gray;
-}
 input[type="date"]::-webkit-calendar-picker-indicator {
    display: none
  }
@@ -611,7 +698,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 100%;
   width:100%;
     position: absolute;
-    background: black;
+    background: none;
     z-index:-1;
     border-radius: 5px;
 }
@@ -702,7 +789,11 @@ background: $blue;
 }
 input[name="amount-regular"],input[name="amount-once"]{
   position: absolute;
-    visibility: hidden;
+    top:0px;
+left:0px;
+width:100%;
+height:100%;
+visibility:hidden;
 }
 fieldset[class*="-amount"] span{
   border-radius: 5px 0 0 5px
@@ -739,16 +830,33 @@ font-size: 15px !important;
 div[id^="step-"]{
   margin-bottom: 17px;
 }
+#step-2 input[type="text"]::placeholder,#cardmonth,#cardyear,#step-2 label[for="reserved_birthdate"],#step-2 input[type="birthdate"],#step-3 input[type="text"],#step-3 select{
+  color:#a9a9a9!important;
+  opacity:1
+}
+#step-2 input[type="date"]{
+  height:48px;
+  @include screenMin768{
+    height:52px;
+  }
+  @include screen1024px{
+    height:47px;
+  }
+}
 #step-2 input[type="text"],#step-2 input[type="date"],#step-3 input[type="text"],#step-3 select,#step-3 input[type="submit"]{
   border:solid 1px $blue;
   border-radius: 5px;
   padding:14px;
+  -moz-padding:14px;
   max-width: unset;
   width:100%!important;
   color:gray;
   background:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
   @include screenMax959Min768{
     padding:16px 14px;
+    -moz-padding:16px 14px;
   }
   @include screen1024px{
     font-size: 15px!important;
@@ -764,7 +872,12 @@ select[size] {
 }
 #card-expiry select, #card-scode input{
   height:47px;
-  text-align: center
+}
+#card-expiry select{
+    text-align: left
+}
+#card-scode input{
+    text-align: center
 }
 #step-3 input[type="submit"]{
   background: $blue;
@@ -831,12 +944,15 @@ p[name="reserved_affectation"]:after,#c-country:after{
   }
 }
 p[name="reserved_affectation"]:after{
-  top: 66%;
+  top: unset;
+  bottom:20px;
   @include screenMin768{
-    top:68%;
+    top: unset;
+    bottom:20px;
   }
   @include screen1024px{
-    top:66%;
+    top: unset;
+    bottom: 20px;
   }
 }
 #step-2 input[type="text"], #step-2 input[type="date"]{
@@ -850,17 +966,45 @@ p[name^="reserved_privacy"] label{
 }
 body{
       min-height: 100vh;
+      background-color: #E9E9E9;
 }
 #header>#lang{
   display: none!important;
 }
-#main>p{
+body:not(#type-b) #main{
   background: white;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
+  margin: 0 10px;
+  @include screenMin768{
+    margin: 42px;
+    max-width: 1252px;
+
+  }
+  @include screen1024px{
+    padding:42px;
+    margin:0;
     left: 50%;
-    transform: translate(-50%,-50%);
+    position: relative;
+    transform: translateX(-50%);
+  }
+
+}
+body:not(#type-b)#main{
+  background: white;
+}
+body:not(#type-b) #header{
+      padding: 20px!important;
+}
+body:not(#type-b) #logo{
+  position: relative;
+  left: 0;
+  top: 0;
+  transform: none;
+  @include screenMin768{
+    padding:0;
+  }
+}
+body:not(#type-b) #header{
+  text-align: left;
 }
 #container{
   min-height:100vh
@@ -875,7 +1019,14 @@ body{
   width:100%;
 }
 .bloc.line.greetings-full,#greetings-comp.bloc{
-  display: block;
+  display: block!important;
+}
+.greetings-full{
+  padding:0;
+  margin:0;
+  @include screenMin768{
+    padding:40px;
+  }
 }
 label{
   font-size:0px!important
@@ -891,7 +1042,7 @@ label[for="reserved_affectation"]{
   padding-left: $secondaryUnit/2;
   margin-bottom: $secondaryUnit;
   font-size: 15px!important;
-  @include screenMax959Min768{
+  @include screenMin768{
     font-size: 15px!important;
     margin-bottom: 22px;
   };
@@ -1278,14 +1429,20 @@ label[for^="reserved_privacy"] input[name^="reserved_privacy"] {
 label[for^="reserved_privacy"]:hover input[name^="reserved_privacy"] ~ .checkbox__checkmark {
   background-color: #ccc;
 }
-#step-2 p:not([data-type="checkbox"]) label:not([for="reserved_birthdate"]){
+#step-2 p:not([data-type="checkbox"]):not(#c-isc) label:not([for="reserved_birthdate"]){
   display: none!important
+}
+p[id="c-isc"] label{
+  font-size: 15px!important;
+  padding-left: 45px;
 }
 /* When the checkbox is checked, add a blue background */
 label[for^="reserved_privacy"] input[name^="reserved_privacy"][data-ira-check="1"] ~ .checkbox__checkmark {
   background-color: $blue!important;
 }
-
+#c-isc-inf{
+  margin-bottom:15px;
+}
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkbox__checkmark:after {
   content: "";
@@ -1300,6 +1457,139 @@ label[for^="reserved_privacy"] input[name^="reserved_privacy"][data-ira-check="1
 
 /* Style the checkmark/indicator */
 label[for^="reserved_privacy"] .checkbox__checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+//custom radio
+/* Customize the label (the container) */
+#c-isc {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 19px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default .donation__type-only button */
+#c-isc>label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark__radio-is-company {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+#c-isc>label:hover input ~ .checkmark__radio-is-company {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+#c-isc>label input:checked ~ .checkmark__radio-is-company {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark__radio-is-company:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+#c-isc>label input:checked ~ .checkmark__radio-is-company:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+#c-isc>label .checkmark__radio-is-company:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+.afftection__checkbox_wrapper {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.afftection__checkbox_wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.afftection__checkbox_wrapper .checkmark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 0;
+  background-color: #eee!important;
+}
+
+/* On mouse-over, add a grey background color */
+.afftection__checkbox_wrapper:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.afftection__checkbox_wrapper input:checked ~ .checkmark {
+  background-color: $blue!important;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.afftection__checkbox_wrapper input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.afftection__checkbox_wrapper .checkmark:after {
   left: 9px;
   top: 5px;
   width: 5px;

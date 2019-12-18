@@ -8,13 +8,13 @@ export default function(props){
   return(
     <>
       <DonationTypeChooser
-        translation='MONTHLY'
+        translation='regular'
         id="regular-chooser"
         onlyType={document.getElementsByClassName('bloc').length == 1 && document.getElementsByClassName('bloc')[0].id == 'regular'? 'donation__type-only':''}
         hideType={document.getElementById('regular')!=null?'':'donation_chooser-hidden'}
         />
       <DonationTypeChooser
-        translation='ONCE'
+        translation='once'
         id="once-chooser"
         onlyType={document.getElementsByClassName('bloc').length == 1 && document.getElementsByClassName('bloc')[0].id == 'once'? 'donation__type-only':''}
         hideType={document.getElementById('once')!=null?'':'donation_chooser-hidden'}
@@ -23,13 +23,12 @@ export default function(props){
   )
 }
 function DonationTypeChooser(props){
-  console.log(props.onlyType)
   return(
     <div
       id={props.id}
       onClick={setActiveDonationType}
       className={`${props.id.split('-')[0]===document.querySelector('#step-1 .bloc').id?'active':''} ${props.onlyType} ${props.hideType}`}>
-    {props.translation} 
+    {document.querySelector(`#${props.translation} .bloc-content h3`)?document.querySelector(`#${props.translation} .bloc-content h3`).innerText:''}
     </div>
   )
 }

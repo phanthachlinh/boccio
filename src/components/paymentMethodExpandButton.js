@@ -29,7 +29,7 @@ function addEventListenersToButtons(){
 function addButtons(){
   [...document.querySelectorAll('fieldset[id^="payment_mode-"]')].map(el=>{
     el.key = el.id;
-    el.insertAdjacentHTML('afterbegin',ReactDOMServer.renderToStaticMarkup(<PaymentMethodButton active={el.id == 'payment_mode-card'?true:false} title={el.id.split('-')[1]}/>))
+    el.insertAdjacentHTML('afterbegin',ReactDOMServer.renderToStaticMarkup(<PaymentMethodButton active={el.id == 'payment_mode-card'?true:false} title={el.querySelector('.payment_head .payment_mode_title')?el.querySelector('.payment_head .payment_mode_title').innerText:''}/>))
     //  el.prependHTML(jsxToString(<PaymentMethodButton />))
   });
 }
@@ -41,15 +41,46 @@ function PaymentMethodButton(props){
   )
 }
 function changeExpYearText(){
-  [...document.querySelectorAll('#expMonth')].map(el=>{
-    [...el.querySelectorAll('option')].map(el=>{
-      let newValue = el.innerText.split(' /');
+  if(document.getElementById('gestpay_submit'))
+    [...document.querySelectorAll('#expMonth')].map(el=>{
+      [...el.querySelectorAll('option')].map(el=>{
+        let newValue = el.innerText.split(' /');
 
-      if(newValue.length == 2){
-        el.innerText = newValue[0];
-      }
+        if(newValue.length == 2){
+          el.innerText = newValue[0];
+        }
+      })
     })
-  })
+  if(document.getElementById('stripe_submit')){
+    [...document.querySelectorAll('#cardmonth')].map(el=>{
+      el.querySelector('option').innerText ='MM';
+      [...el.querySelectorAll('option')].map(el=>{
+        let newValue = el.innerText.split(' /');
+
+        if(newValue.length == 2){
+          el.innerText = newValue[0];
+        }
+      })
+    });
+    [...document.querySelectorAll('#cardyear')].map(el=>{
+      el.querySelector('option').innerText ='YYYY';
+      [...el.querySelectorAll('option')].map(el=>{
+        let newValue = el.innerText.split(' /');
+
+        if(newValue.length == 2){
+          el.innerText = newValue[0];
+        }
+      })
+    });
+    [...document.querySelectorAll('#scode')].map(el=>{
+      el.placeholder = el.parentElement.querySelector('label').innerText;
+    });
+    [...document.querySelectorAll('#cardnumber')].map(el=>{
+      el.placeholder = el.parentElement.querySelector('label').innerText;
+    });
+
+  }
+
 }
 //edits plaholders in payment method
 function editInputPlaceholder(){
@@ -60,16 +91,18 @@ function editInputPlaceholder(){
     el.id = "scode";
   });
   [...document.querySelectorAll('select[id="expMonth"]')].map(el=>{
-      el.querySelector('option').innerText = "Month";
+      el.querySelector('option').innerText = "MM";
       el.name = "cardmonth";
   });
 
   [...document.querySelectorAll('select[id="expYear"]')].map(el=>{
-    el.querySelector('option').innerText = "Year";
+    el.querySelector('option').innerText = "YYYY";
     el.name = "cardyear";
   });
   [...document.querySelectorAll('input[name="cardNumber"]')].map(el=>{
     el.id = "cardnumber";
+    if(!el.parentElement.querySelector('label[for="cardNumber"]'))
+    return
       el.placeholder = el.parentElement.querySelector('label[for="cardNumber"]').innerText
   });
 

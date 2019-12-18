@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import DonationsTypeChooser from './components/DonationsTypeChooser'
-import addCheckmarkToPredefAmounts from './helpers/addCheckmarkToPredefAmounts'
+import removeToCommaFromPredefAmounts from './helpers/removeToCommaFromPredefAmounts'
 import attachSetActivePredefValueEvListener from './helpers/attachSetActivePredefValueEvListener'
 import editFreeAmountSection from './helpers/editFreeAmountSection'
 import removeStep2help from './helpers/removeStep2help';
@@ -25,15 +25,22 @@ import addBlackUnderlays from './helpers/addBlackUnderlays';
 import addOptionalLinkToPrivacy from './helpers/addOptionalLinkToPrivacy';
 import birthdateHasValueEvListener from './helpers/birthdateHasValueEvListener';
 import addIdToDateInputs from './helpers/addIdToDateInputs';
+import addGreetingsPlaceholder from './helpers/addGreetingsPlaceholder';
 import setRequiredPropToInputs from './helpers/setRequiredPropToInputs';
 import addDataIraCheckValueOnInput from './helpers/addDataIraCheckValueOnInput';
 import removeSpaceFromValueOfAmount from './helpers/removeSpaceFromValueOfAmount';
+import addRadioCheckmark from './helpers/addRadioCheckmark';
+import addFamountOnInputEventListener from './helpers/addFamountOnInputEventListener';
+import greetingTextDivStretcher from './helpers/greetingTextDivStretcher';
+import setCurrentDonation from './helpers/setCurrentDonation'
 window.onload = ()=>{
   if(document.querySelector('#step-1 .bloc'))
     document.querySelector('#step-1 .bloc').insertAdjacentHTML('beforeBegin','<div class="donations-type-wrapper"></div>');
   setCardPaymentMethodOpenDefault();
   attachSetActivePredefValueEvListener();
   editFreeAmountSection();
+   addGreetingsPlaceholder();
+  removeToCommaFromPredefAmounts();
   addIdToDateInputs();
   removeStep2help('email','firstname','lastname', 'address1','reserved_birthdate');
 //  wrapStep2CheckboxText();
@@ -47,21 +54,35 @@ window.onload = ()=>{
  removeLangText();
 //  editLangListFunctionality();
   editSteptitle();
-changeLangSelector();
-capitalizeDonationTargetLabel()
+  if(document.querySelector('#lang >p'))
+    changeLangSelector();
+capitalizeDonationTargetLabel();
+if(window.navigator.userAgent.indexOf("Edge") > -1){
+  addBlackUnderlays();
 addDataIraCheckValueOnInput();
+
+}
+else{
+
+addDataIraCheckValueOnInput();
+  addBlackUnderlays();
+}
+
 detectMandatory();
 editGestPayInputNames();
 commonCheckInputOverride();
 birthdateHasValueEvListener();
 removeSpaceFromValueOfAmount();
-addBlackUnderlays();
-addOptionalLinkToPrivacy();
 
+addOptionalLinkToPrivacy();
+addRadioCheckmark();
+addFamountOnInputEventListener();
+greetingTextDivStretcher();
+setCurrentDonation();
 //setRequiredPropToInputs();
   if(typeof document.getElementsByClassName('donations-type-wrapper')[0] !=='undefined')
   ReactDOM.render(<DonationsTypeChooser />, document.getElementsByClassName('donations-type-wrapper')[0]);
-
+document.querySelector('html').style.display='block'
 }
 function capitalizeDonationTargetLabel(){
   if(!document.querySelector('label[for="reserved_affectation"]'))

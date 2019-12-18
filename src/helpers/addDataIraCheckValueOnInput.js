@@ -1,7 +1,7 @@
 export default()=>{
   [...document.querySelectorAll('input[name^="reserved_"]:not([type="hidden"])')].map(el=>{
     if(el.type == 'checkbox')
-    el.addEventListener('input',ev=>{
+    el.addEventListener('change',ev=>{
         console.log('input')
 
         if(ev.target.getAttribute('data-ira-check') == '1'){
