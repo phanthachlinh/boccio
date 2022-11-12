@@ -24,6 +24,6 @@
     "jsx-to-string": "^1.4.0",
     "react-dom-server": "0.0.5",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.12"
   }
 }
